@@ -1,6 +1,6 @@
 import type { HeroContent, SiteContent } from "@/content/types";
 
-export function Hero({ site, content }: { site: SiteContent; content: HeroContent }) {
+export function Hero({ site, content, hasProjects = false }: { site: SiteContent; content: HeroContent; hasProjects?: boolean }) {
   return (
     <section aria-labelledby="hero-heading" className="grid items-center gap-12 pb-20 pt-12 sm:pb-28 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-36 lg:pt-24">
       <div>
@@ -16,7 +16,7 @@ export function Hero({ site, content }: { site: SiteContent; content: HeroConten
           <a href={`mailto:${site.email}`} className="inline-flex min-h-12 items-center justify-center gap-5 rounded bg-accent px-5 font-medium text-accent-foreground hover:bg-foreground">
             {content.contactLabel}<span aria-hidden="true">↗</span>
           </a>
-          <a href={site.github} className="inline-flex min-h-12 items-center justify-center rounded border border-border px-5 hover:border-accent hover:text-accent">{content.githubLabel}</a>
+          <a href={hasProjects ? "#work" : site.github} className="inline-flex min-h-12 items-center justify-center rounded border border-border px-5 hover:border-accent hover:text-accent">{hasProjects ? content.workLabel : content.githubLabel}</a>
         </div>
       </div>
       <div className="min-w-0">

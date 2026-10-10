@@ -4,6 +4,9 @@ import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { hero } from "@/content/hero";
 import { site } from "@/content/site";
+import { projects } from "@/content/projects";
+import { SelectedWork } from "@/components/sections/selected-work";
+import { CaseStudies } from "@/components/sections/case-studies";
 
 export default function Home() {
   return (
@@ -11,9 +14,11 @@ export default function Home() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-accent focus:px-5 focus:py-3 focus:text-accent-foreground">
         Skip to content
       </a>
-      <Header site={site} />
+      <Header site={site} hasProjects={projects.length > 0} />
       <main id="main" tabIndex={-1} className="flex-1">
-        <Hero site={site} content={hero} />
+        <Hero site={site} content={hero} hasProjects={projects.length > 0} />
+        <SelectedWork projects={projects} />
+        <CaseStudies projects={projects} />
         <Contact site={site} />
       </main>
       <Footer site={site} />

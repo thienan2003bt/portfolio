@@ -33,6 +33,8 @@ Done when: the starter page is replaced, real contact links work, there are no p
 
 ### 2. Selected work and case-study evidence
 
+Implementation status: typed project data, project cards, Selected Work, and on-page case-study components are connected. Work navigation appears only when projects exist. The content collection is empty pending owner-supplied project facts; these sections remain hidden and this step is not yet content-complete.
+
 - Define exported project types and one typed data source in `content/projects.ts`.
 - Collect title, one-line outcome, role, year, stack, screenshot, available links, and disclosure constraints for each project.
 - Build the featured project first, then two supporting projects using shared card primitives. Omit unavailable links instead of rendering disabled or dummy actions.

@@ -7,4 +7,5 @@ export const hero: HeroContent = {
   technologies: ["React", "Next.js", "TypeScript", "Express", "NestJS"],
   contactLabel: "Get in touch",
   githubLabel: "Explore GitHub",
+  workLabel: "View projects",
 };

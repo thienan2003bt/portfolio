@@ -33,7 +33,7 @@ Done when: the starter page is replaced, real contact links work, there are no p
 
 ### 2. Selected work and case-study evidence
 
-Implementation status: typed project data, project cards, Selected Work, and on-page case-study components are connected. The owner approved a UI-first preview with three clearly labeled project placeholders and one case-study placeholder. No fabricated demo or source links are rendered. Replace these entries before public launch. The hero now has five accessible technology tabs with illustrative code examples, not excerpts claimed to be shipped work.
+Implementation status: typed project data and Selected Work are connected. Case-study details are now collapsed inside their project cards at the owner's request; there is no separate "Behind the build" section. The owner approved three clearly labeled project placeholders and one case-study placeholder. No fabricated demo or source links are rendered. Replace these entries before public launch. Five technology tabs display complete sample source files from `content/samples/`; the files are display assets, not services executed by this site.
 
 - Define exported project types and one typed data source in `content/projects.ts`.
 - Collect title, one-line outcome, role, year, stack, screenshot, available links, and disclosure constraints for each project.
@@ -76,9 +76,13 @@ Remaining launch content: up to three real projects and screenshots, one approve
 
 ## Scope of this initial change
 
-The homepage includes typed site, hero, project, skills, about, and experience modules. The hero code tabs show illustrative examples. Projects and the case study use owner-approved, clearly marked placeholders. Skills are grouped into Frontend, Backend, and Practices in this portfolio; native expandable panels work without JavaScript. About uses only the role, stack, and experience durations already documented in the README. The experience component stays hidden while its content collection is empty.
+The homepage includes typed site, hero, project, skills, about, and experience modules. The hero code tabs display full files with contained vertical and horizontal scrolling. Projects and the case study use owner-approved, clearly marked placeholders. Skills are grouped into Frontend, Backend, and Practices in this portfolio; a single-open accordion uses accessible buttons, controlled state, and reduced-motion-aware transitions. About uses only the role, stack, and experience durations already documented in the README. The experience component stays hidden while its content collection is empty.
 
 Small Motion wrappers animate sections once; markup starts fully visible and reduced motion forces a static layout. The page includes a skip link, semantic headings, visible focus, responsive navigation, and real contact links. Social preview images, metadata, and a terminal-style SVG icon are implemented. Production preview origins use explicit public configuration or Vercel's production URL.
+
+Reserved pages use a shared coming-soon screen: `/about`, `/contact`, `/projects`, `/experience`, `/skills`, `/coming-soon`, and the current project slugs. These static preview pages are marked noindex and link back to the homepage; unknown routes remain 404s. Future real pages should replace these reserved routes deliberately.
+
+Feedback-pass validation: lint and production build passed; five source samples passed syntax transpilation checks, and the pagination sample passed defaults, range, malformed-input, and error-propagation checks. Production HTTP checks verified homepage content, coming-soon pages, a 404 for an unknown path, and deployment tracing of sample source assets. Browser interaction checks are still pending because browser tools are unavailable.
 
 ## Release checklist
 

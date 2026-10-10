@@ -1,0 +1,48 @@
+import {
+  Controller, Get, Inject, Injectable, Module,
+  NotFoundException, Param, ParseUUIDPipe,
+} from "@nestjs/common";
+
+type Project = { id: string; title: string };
+interface ProjectRepository {
+  findById(id: string): Promise<Project | undefined>;
+}
+const PROJECT_REPOSITORY = Symbol("PROJECT_REPOSITORY");
+
+// In-memory adapter for this standalone example; replace at the module boundary.
+@Injectable()
+class InMemoryProjectRepository implements ProjectRepository {
+  private readonly projects = new Map<string, Project>();
+
+  async findById(id: string): Promise<Project | undefined> {
+    return this.projects.get(id);
+  }
+}
+
+@Injectable()
+export class ProjectsService {
+  constructor(@Inject(PROJECT_REPOSITORY) private readonly repository: ProjectRepository) {}
+
+  async findById(id: string): Promise<Project> {
+    const project = await this.repository.findById(id);
+    if (!project) throw new NotFoundException("Project not found.");
+    return project;
+  }
+}
+
+@Controller("projects")
+export class ProjectsController {
+  constructor(private readonly service: ProjectsService) {}
+
+  @Get(":id")
+  findOne(@Param("id", new ParseUUIDPipe({ version: "4" })) id: string): Promise<Project> {
+    return this.service.findById(id);
+  }
+}
+
+@Module({
+  controllers: [ProjectsController],
+  providers: [ProjectsService, { provide: PROJECT_REPOSITORY, useClass: InMemoryProjectRepository }],
+  exports: [ProjectsService],
+})
+export class ProjectsModule {}

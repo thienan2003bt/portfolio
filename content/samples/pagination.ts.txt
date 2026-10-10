@@ -1,0 +1,46 @@
+export type Result<T, E> =
+  | { ok: true; value: T }
+  | { ok: false; error: E };
+
+export type Pagination = { page: number; limit: number; offset: number };
+export type ValidationError = { field: "page" | "limit"; message: string };
+
+function positiveInteger(
+  raw: unknown,
+  fallback: number,
+  maximum: number,
+): number | undefined {
+  if (raw === undefined) return fallback;
+  if (typeof raw !== "string" || !/^[1-9]\d{0,6}$/.test(raw)) return undefined;
+  const value = Number(raw);
+  return Number.isSafeInteger(value) && value <= maximum ? value : undefined;
+}
+
+// Untrusted query values enter as unknown; validated values leave as a typed result.
+export function parsePagination(
+  input: Readonly<{ page?: unknown; limit?: unknown }>,
+): Result<Pagination, ValidationError> {
+  const page = positiveInteger(input.page, 1, 100_000);
+  if (page === undefined) {
+    return { ok: false, error: { field: "page", message: "Expected a page from 1 to 100000." } };
+  }
+  const limit = positiveInteger(input.limit, 20, 100);
+  if (limit === undefined) {
+    return { ok: false, error: { field: "limit", message: "Expected a limit from 1 to 100." } };
+  }
+  return { ok: true, value: { page, limit, offset: (page - 1) * limit } };
+}
+
+export function mapResult<T, U, E>(
+  result: Result<T, E>,
+  transform: (value: T) => U,
+): Result<U, E> {
+  return result.ok ? { ok: true, value: transform(result.value) } : result;
+}
+
+// Consumers narrow the discriminated union before touching the payload.
+export function describePagination(input: { page?: unknown; limit?: unknown }): string {
+  const result = parsePagination(input);
+  if (!result.ok) return `${result.error.field}: ${result.error.message}`;
+  return `Page ${result.value.page}, ${result.value.limit} records, offset ${result.value.offset}`;
+}

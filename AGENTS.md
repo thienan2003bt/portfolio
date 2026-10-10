@@ -11,8 +11,8 @@
 
 This is a hiring and freelance portfolio for a full-stack developer. Prioritize clear evidence of work, readable content, and easy contact.
 
-- v1 is one page at `/` with anchored sections. Only project case studies may add routes at `/projects/[slug]`.
-- Preserve section order: Header, Hero, Selected work, Case studies, Experience, Skills, About, Contact, Footer.
+- v1 is one page at `/` with anchored sections. Explicit reserved coming-soon paths are documented in [ARCHITECTURE.md](./ARCHITECTURE.md); unknown paths must remain 404s.
+- Preserve section order: Header, Hero, Selected work (with collapsed case studies inside projects), Experience, Skills, About, Contact, Footer.
 - Target three selected projects with one featured and one or two case studies, but omit empty sections instead of inventing content to meet a count.
 - Project cards show title, outcome, stack, role, year, and available live/GitHub/case-study links. Case studies explain context, contribution, stack, architecture, and outcome.
 - Contact is a visible email address with a `mailto:` link and GitHub. A resume PDF is optional. Do not add other social channels by default.

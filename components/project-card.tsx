@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Project } from "@/content/types";
+import { ProjectCaseStudyContent } from "./project-case-study";
 
 export function ProjectCard({ project }: { project: Project }) {
   const titleId = `project-${project.slug}`;
@@ -44,8 +45,14 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="mt-auto flex flex-wrap gap-3 font-mono text-sm">
           {project.links.live && <a href={project.links.live} className="inline-flex min-h-12 items-center rounded bg-accent px-4 text-accent-foreground hover:bg-foreground" aria-label={`Live demo of ${project.title}`}>Live demo ↗</a>}
           {project.links.github && <a href={project.links.github} className="inline-flex min-h-12 items-center rounded border border-border px-4 hover:border-accent hover:text-accent" aria-label={`Source code for ${project.title}`}>Source code ↗</a>}
-          {project.caseStudy && <a href={`#case-study-${project.slug}`} className="inline-flex min-h-12 items-center px-2 text-accent underline-offset-4 hover:underline" aria-label={`Read the ${project.title} case study`}>Read case study ↓</a>}
         </div>
+        {project.caseStudy && <details className="group border-t border-border pt-4">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-mono text-sm text-accent [&::-webkit-details-marker]:hidden">
+            {project.placeholder ? "Case-study preview" : "Behind the build"}
+            <span aria-hidden="true" className="group-open:rotate-45 motion-safe:transition-transform">+</span>
+          </summary>
+          <ProjectCaseStudyContent study={project.caseStudy} />
+        </details>}
       </div>
     </article>
   );

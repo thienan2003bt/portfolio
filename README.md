@@ -29,7 +29,7 @@ Read this file and [`ARCHITECTURE.md`](./ARCHITECTURE.md) before changing the co
 ### Product constraints
 
 - Audience: recruiters, hiring managers, freelance clients.
-- v1 is **one long page** with anchored sections. Extra routes only for project case studies (`/projects/[slug]`).
+- v1 is **one long page** with anchored sections. Project routes and explicitly reserved coming-soon paths are documented in [ARCHITECTURE.md](./ARCHITECTURE.md).
 - Do **not** add: blog, services pricing, testimonials placeholders, contact forms, or a dump of old unfinished projects.
 - Contact surfaces: **email** (`mailto:` + visible address) and **GitHub**. No other social by default.
 
@@ -38,7 +38,7 @@ Read this file and [`ARCHITECTURE.md`](./ARCHITECTURE.md) before changing the co
 1. **Header** — name, role, GitHub, email, optional resume PDF.
 2. **Hero** — one-line pitch, short support copy, CTAs (email / view work).
 3. **Selected work** — three project cards (one featured). Each card: title, one-line outcome, stack tags, role, year, links (live / GitHub / case study).
-4. **Case studies** — one or two deeper write-ups (on-page or `/projects/[slug]`): context, contribution, stack, simple architecture, outcome, links. No secrets.
+4. **Case studies** — collapsed inside their project cards; later `/projects/[slug]` if needed. Include context, contribution, stack, simple architecture, outcome, and available links. No secrets.
 5. **Experience** — company, title, dates, 3–5 impact bullets, stack used.
 6. **Skills** — Frontend / Backend / Practices. Interview-honest only.
 7. **About** — short bio and how I work.

@@ -6,7 +6,6 @@ import { hero } from "@/content/hero";
 import { site } from "@/content/site";
 import { projects } from "@/content/projects";
 import { SelectedWork } from "@/components/sections/selected-work";
-import { CaseStudies } from "@/components/sections/case-studies";
 import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
 import { Skills } from "@/components/sections/skills";
@@ -25,7 +24,6 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="flex-1">
         <Hero site={site} content={hero} hasProjects={projects.length > 0} />
         <SectionReveal><SelectedWork projects={projects} /></SectionReveal>
-        <SectionReveal><CaseStudies projects={projects} /></SectionReveal>
         {experience.length > 0 && <SectionReveal><Experience entries={experience} /></SectionReveal>}
         <SectionReveal><Skills groups={skills} /></SectionReveal>
         <SectionReveal><About content={about} site={site} /></SectionReveal>

@@ -47,7 +47,7 @@ Read this file and [`ARCHITECTURE.md`](./ARCHITECTURE.md) before changing the co
 
 ### Content vs UI
 
-Copy and structured data live in typed modules (and MDX later if a case study needs long-form). Do not hardcode recruiter-facing facts across random components. Empty sections should not ship; omit them instead.
+Copy and structured data live in typed modules (and MDX later if a case study needs long-form). Do not hardcode recruiter-facing facts across random components. During UI development, clearly labeled project and case-study placeholders are permitted at the owner's request; replace them before public launch. Never invent working demo links or present sample outcomes as facts. Empty sections should not ship; omit them instead.
 
 ### Motion
 

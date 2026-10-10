@@ -6,6 +6,15 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article aria-labelledby={titleId} className={`flex min-w-0 flex-col overflow-hidden rounded-lg border bg-surface ${project.featured ? "border-accent/50 md:col-span-2" : "border-border"}`}>
+      {project.placeholder && !project.image && (
+        <div className="flex aspect-[16/7] items-center justify-center border-b border-border bg-surface-raised p-6" aria-label="Project image placeholder">
+          <div className="w-full max-w-sm rounded border border-border bg-background p-4" aria-hidden="true">
+            <div className="mb-4 flex gap-1.5">{[0, 1, 2].map((dot) => <span key={dot} className="h-1.5 w-1.5 rounded-full bg-muted/40" />)}</div>
+            <div className="flex gap-3"><div className="w-1/4 rounded border border-border" /><div className="flex-1 space-y-3"><div className="h-2 w-2/3 rounded bg-accent/25" /><div className="h-2 rounded bg-muted/15" /><div className="h-12 rounded border border-dashed border-border" /></div></div>
+            <p className="mt-4 text-center font-mono text-xs text-muted">Project preview · placeholder</p>
+          </div>
+        </div>
+      )}
       {project.image && (
         <div className="border-b border-border bg-surface-raised p-4 sm:p-6">
           <Image
@@ -24,6 +33,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.featured && <span className="rounded border border-accent/40 px-2 py-1 text-accent">Featured project</span>}
         </div>
         <div>
+          {project.placeholder && <p className="mb-2 font-mono text-xs text-accent">Design placeholder</p>}
           <h3 id={titleId} className="text-2xl font-semibold tracking-tight sm:text-3xl">{project.title}</h3>
           <p className="mt-3 max-w-3xl text-base leading-7 text-muted">{project.summary}</p>
           <p className="mt-4 max-w-3xl text-base leading-7"><span className="mr-2 text-accent" aria-hidden="true">↳</span>{project.outcome}</p>

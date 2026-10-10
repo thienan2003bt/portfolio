@@ -8,10 +8,18 @@ export type SiteContent = {
 export type HeroContent = {
   headline: string;
   description: string;
-  technologies: readonly string[];
+  examples: readonly CodeExample[];
   contactLabel: string;
   githubLabel: string;
   workLabel: string;
+};
+
+export type CodeExample = {
+  id: string;
+  technology: string;
+  filename: string;
+  principle: string;
+  code: string;
 };
 
 export type ProjectCaseStudy = {
@@ -23,6 +31,7 @@ export type ProjectCaseStudy = {
 };
 
 export type Project = {
+  placeholder?: boolean;
   slug: string;
   title: string;
   summary: string;

@@ -12,7 +12,7 @@ export function CaseStudies({ projects }: { projects: readonly Project[] }) {
           const study = project.caseStudy!;
           return (
             <article id={`case-study-${project.slug}`} key={project.slug} aria-labelledby={`study-title-${project.slug}`} className="scroll-mt-24 rounded-lg border border-border bg-surface p-6 sm:p-8">
-              <p className="mb-3 font-mono text-xs text-accent">Case study · {project.year}</p>
+              <p className="mb-3 font-mono text-xs text-accent">{project.placeholder ? "Case-study placeholder" : "Case study"} · {project.year}</p>
               <h3 id={`study-title-${project.slug}`} className="text-2xl font-semibold tracking-tight sm:text-3xl">{project.title}</h3>
               <div className="mt-8 grid gap-8 md:grid-cols-2">
                 {[["The context", study.context], ["My contribution", study.contribution], ["A technical decision", study.decision], ["The outcome", study.outcome]].map(([heading, body]) => (

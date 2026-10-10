@@ -33,7 +33,7 @@ Done when: the starter page is replaced, real contact links work, there are no p
 
 ### 2. Selected work and case-study evidence
 
-Implementation status: typed project data, project cards, Selected Work, and on-page case-study components are connected. Work navigation appears only when projects exist. The content collection is empty pending owner-supplied project facts; these sections remain hidden and this step is not yet content-complete.
+Implementation status: typed project data, project cards, Selected Work, and on-page case-study components are connected. The owner approved a UI-first preview with three clearly labeled project placeholders and one case-study placeholder. No fabricated demo or source links are rendered. Replace these entries before public launch. The hero now has five accessible technology tabs with illustrative code examples, not excerpts claimed to be shipped work.
 
 - Define exported project types and one typed data source in `content/projects.ts`.
 - Collect title, one-line outcome, role, year, stack, screenshot, available links, and disclosure constraints for each project.

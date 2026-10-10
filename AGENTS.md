@@ -18,6 +18,7 @@ This is a hiring and freelance portfolio for a full-stack developer. Prioritize 
 - Contact is a visible email address with a `mailto:` link and GitHub. A resume PDF is optional. Do not add other social channels by default.
 - Do not add a blog, pricing, placeholder testimonials, contact forms, or unfinished-project dumps.
 - Never invent employers, dates, metrics, skills, project outcomes, or links. Ask for missing facts when necessary; do not publish placeholders as real content.
+- During the current UI-first phase, the owner explicitly permits clearly labeled project and case-study placeholders. Keep links absent until supplied and replace placeholders before public launch. Hero code examples are illustrative, not claims of shipped work.
 - Anonymize company case studies. Never commit secrets, private URLs, NDA-protected client names, or proprietary code.
 
 ## Implementation rules

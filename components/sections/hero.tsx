@@ -1,3 +1,4 @@
+import { CodeShowcase } from "@/components/code-showcase";
 import type { HeroContent, SiteContent } from "@/content/types";
 
 export function Hero({ site, content, hasProjects = false }: { site: SiteContent; content: HeroContent; hasProjects?: boolean }) {
@@ -19,18 +20,7 @@ export function Hero({ site, content, hasProjects = false }: { site: SiteContent
           <a href={hasProjects ? "#work" : site.github} className="inline-flex min-h-12 items-center justify-center rounded border border-border px-5 hover:border-accent hover:text-accent">{hasProjects ? content.workLabel : content.githubLabel}</a>
         </div>
       </div>
-      <div className="min-w-0">
-        <ul aria-label="Technologies" className="mb-4 flex flex-wrap gap-2 font-mono text-xs text-muted">
-          {content.technologies.map((technology) => <li key={technology} className="rounded border border-border px-3 py-2">{technology}</li>)}
-        </ul>
-        <figure className="overflow-hidden rounded-lg border border-border bg-surface">
-          <figcaption className="flex flex-wrap justify-between gap-2 border-b border-border px-5 py-4 font-mono text-xs text-muted">
-            <span>content/hero.ts</span><span>TypeScript · this portfolio</span>
-          </figcaption>
-          <pre tabIndex={0} aria-label="An excerpt from this portfolio's typed hero content" className="overflow-x-auto px-5 py-8 font-mono text-sm leading-8 sm:px-6"><code><span className="text-muted">{"// One source of truth for the page.\n"}</span><span className="text-accent">{"export const "}</span>{"hero: "}<span className="text-accent">HeroContent</span>{" = {\n  headline:\n    "}<span className="text-accent">{JSON.stringify(content.headline)}</span>{",\n  technologies: [\n"}{content.technologies.map((technology) => `    ${JSON.stringify(technology)},\n`).join("")}{"  ],\n};"}</code></pre>
-          <p className="border-t border-border px-5 py-4 font-mono text-xs text-muted">A small excerpt from this portfolio.</p>
-        </figure>
-      </div>
+      <CodeShowcase examples={content.examples} />
     </section>
   );
 }

@@ -73,8 +73,7 @@ Full rules: [`ARCHITECTURE.md`](./ARCHITECTURE.md).
 ## Local development
 
 ```bash
-# after the Next.js app is scaffolded
-npm install
+npm ci
 npm run dev
 ```
 
@@ -90,4 +89,12 @@ npm run lint
 
 ## Project status
 
-Documentation and architecture are defined. Application scaffolding and UI come next.
+The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project and case-study content is explicitly labeled as design placeholders. Experience is implemented but hidden until employment details are supplied.
+
+Content is maintained in typed modules under `content/`. See [HOMEPAGE-PLAN.md](./HOMEPAGE-PLAN.md) for the implementation status and release checklist.
+
+### Deployment
+
+Deploy the repository to Vercel with the Next.js preset and the existing npm build command. The production origin is read from Vercel's `VERCEL_PROJECT_PRODUCTION_URL`; set `NEXT_PUBLIC_SITE_URL` to your custom origin if needed (see [.env.example](./.env.example)). Redeploy after changing the origin because social preview URLs are generated during the build.
+
+Before public launch, replace project placeholders and complete the browser checks in the release checklist. No analytics, backend service, or secret environment variables are required.

@@ -3,7 +3,7 @@
 ## Start here
 
 - Read [README.md](./README.md) for product scope and [ARCHITECTURE.md](./ARCHITECTURE.md) for mandatory technical conventions before changing code.
-- Inspect the affected files and [package.json](./package.json) before choosing an implementation. The app is already scaffolded; the README's project-status text describes an earlier stage. Use the repository for current implementation state and the docs for intended behavior.
+- Inspect the affected files and [package.json](./package.json) before choosing an implementation. Use the repository for current implementation state and the docs for intended behavior.
 - Keep changes focused on the request. Preserve unrelated work. If the request changes the product scope or stack, update the corresponding docs in the same change before implementing it.
 - Before writing code, read the relevant installed Next.js guides as required by the managed notice below. Use the installed version's APIs and heed deprecations.
 

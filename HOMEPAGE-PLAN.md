@@ -1,6 +1,6 @@
 # Homepage implementation plan
 
-Status: foundation started on `feat/homepage-foundation`. Based on the supplied "Terminal craft" desktop mockup. Product scope remains governed by [README.md](./README.md) and [ARCHITECTURE.md](./ARCHITECTURE.md).
+Status: homepage UI implemented on `feat/homepage-foundation`, based on the supplied "Terminal craft" mockup. The owner requested completing the remaining implementation stages together before feedback. Product scope remains governed by [README.md](./README.md) and [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## Design decisions
 
@@ -9,8 +9,8 @@ Keep the near-black green palette, lime primary actions, strong sans-serif headi
 | Gap in the mockup | Implementation decision |
 | --- | --- |
 | Secondary copy, tags, and code look small and subdued | Use 16px body copy, generally 14px labels, readable line heights, and measured text contrast. Reserve smaller text for nonessential annotations. |
-| Six hero tabs compete with the pitch | Start with one static, readable code example from real work, with its purpose explained. Add manual tabs only if distinct examples provide useful evidence. No autoplay. |
-| Generic pricing example and simulated lint output offer little proof | Prefer a public project excerpt with attribution. Do not imply that illustrative terminal output is a live check or verified project result. |
+| Six hero tabs compete with the pitch | The owner requested technology tabs; use five manual, keyboard-accessible tabs with a short explanation of each code example. No autoplay. |
+| Generic pricing example and simulated lint output offer little proof | Label the prepared examples as illustrative. Do not imply they are a live check or verified project result. |
 | Four project selectors plus filters and nested tabs hide evidence | Start with three visible project summaries, one featured. Keep outcomes, role, stack, and links visible. Use a larger featured detail panel for the desktop visual character; stack cards on mobile. Defer filters for this small collection. |
 | Experience and About are absent | Restore these sections in the documented order when real content is available. Put "How I work" in About and practices in Skills. |
 | Stack layers imply databases, queues, and containers regardless of actual experience | Use the documented Frontend / Backend / Practices groups with actual technologies and project evidence. The vertical line motif can remain. |
@@ -70,10 +70,21 @@ Done when: the page tells a coherent professional story and every factual claim 
 
 ## Content needed
 
-First screen: preferred display name, public email, GitHub profile, approved pitch, and optionally city/availability. The screenshot headline is a good draft: "I build the interface, and the API behind it."
+The first screen uses the supplied display name, email, GitHub profile, and screenshot headline. City and availability remain optional and omitted.
 
-Remaining page: up to three real projects and screenshots, one case-study outline, employment details that can be published, honest skill groups, and a short bio. A public code excerpt is needed before the hero panel can serve as evidence.
+Remaining launch content: up to three real projects and screenshots, one approved case-study write-up, and employment details that can be published. Skill groups and a short bio use the facts already documented in the README. The illustrative hero code can be replaced with public project excerpts later.
 
 ## Scope of this initial change
 
-The theme, typed site and hero content, shared content types, and server-rendered Header, Hero, Contact, and Footer components are implemented and composed on the homepage. The first screen uses an excerpt from its own typed content for the terminal panel. Identity and contact details are supplied by the owner; optional location and availability are omitted. Page metadata uses the same content sources. Later roadmap steps have not been started.
+The homepage includes typed site, hero, project, skills, about, and experience modules. The hero code tabs show illustrative examples. Projects and the case study use owner-approved, clearly marked placeholders. Skills are grouped into Frontend, Backend, and Practices in this portfolio; native expandable panels work without JavaScript. About uses only the role, stack, and experience durations already documented in the README. The experience component stays hidden while its content collection is empty.
+
+Small Motion wrappers animate sections once; markup starts fully visible and reduced motion forces a static layout. The page includes a skip link, semantic headings, visible focus, responsive navigation, and real contact links. Social preview images, metadata, and a terminal-style SVG icon are implemented. Production preview origins use explicit public configuration or Vercel's production URL.
+
+## Release checklist
+
+- Replace all three project placeholders and the case-study outline with approved real content, screenshots, and available links.
+- Add approved experience entries in `content/experience.ts` if the section is wanted. Optional city, availability, and resume remain omitted.
+- Configure the production origin through `NEXT_PUBLIC_SITE_URL` when using a custom domain. Do not point it at a repository URL.
+- Run lint and the production build, then inspect the production homepage, icon, and both social preview images.
+- Repeat mobile/desktop, 200% zoom, keyboard, reduced-motion, and tab interaction checks in a browser. Browser tools were unavailable in this completion pass; previous browser checks do not verify the newly added sections.
+- Deploy with Vercel's Next.js preset and review the preview on a real phone before public launch. This local implementation has not been deployed.

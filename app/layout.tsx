@@ -15,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000")),
   title: `${site.name} | ${site.role}`,
   description: hero.description,
+  icons: { icon: "/icon.svg", shortcut: "/icon.svg" },
+  openGraph: { title: `${site.name} | ${site.role}`, description: hero.description, type: "website", locale: "en_US", siteName: site.name },
+  twitter: { card: "summary_large_image", title: `${site.name} | ${site.role}`, description: hero.description },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -44,3 +44,24 @@ export type Project = {
   image?: { src: string; alt: string; width: number; height: number };
   caseStudy?: ProjectCaseStudy;
 };
+
+export type SkillGroup = {
+  id: string;
+  title: string;
+  description: string;
+  items: readonly string[];
+};
+
+export type AboutContent = {
+  title: string;
+  paragraphs: readonly string[];
+};
+
+export type ExperienceEntry = {
+  id: string;
+  company: string;
+  title: string;
+  dates: string;
+  bullets: readonly string[];
+  stack: readonly string[];
+};

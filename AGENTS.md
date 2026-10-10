@@ -71,6 +71,8 @@ Use the scripts actually defined in [package.json](./package.json):
 - For documentation-only changes, check consistency, links, and the diff; an application build is unnecessary.
 - Review the final diff for unrelated edits, fabricated content, secrets, and dependency churn.
 - Summarize what changed and the checks actually performed. State any failed or unavailable checks and remaining limitations clearly.
+- Whenever a prompt produces codebase changes (including documentation), include a suggested commit message in the final response: one sentence, no more than 30 words.
+- Keep each implementation prompt scoped to one task and one commit. Finish only the requested roadmap step; do not bundle later steps. Create a commit only when the user asks to commit.
 
 ## Managed Next.js guidance
 

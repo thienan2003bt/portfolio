@@ -104,6 +104,16 @@ export type Project = {
   caseStudy?: ProjectCaseStudy;
 };
 
+export type ProjectCollectionContent = {
+  title: string;
+  description: string;
+  draftNotice: string;
+  featuredHeading: string;
+  remainingHeading: string;
+  allProjectsHeading: string;
+  emptyMessage: string;
+};
+
 export type SkillGroup = {
   id: string;
   title: string;

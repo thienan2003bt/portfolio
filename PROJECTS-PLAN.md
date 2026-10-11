@@ -1,6 +1,6 @@
 # Projects implementation plan
 
-Status: stage 1 complete on `feat/project-pages`. The shared catalog and explicit homepage selection are implemented, including the Webshare draft. `/projects` and catalog project slugs still show coming-soon screens; collection and detail layouts are stages 2 and 3. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
+Status: stages 1 and 2 complete on `feat/project-pages`. The shared catalog, explicit homepage selection, and `/projects` collection are implemented, including the Webshare draft and homepage navigation. Catalog detail URLs remain coming-soon previews linked from project cards; full detail layouts are stage 3. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
 
 ## Goal and boundaries
 
@@ -102,7 +102,7 @@ Each stage is a separate implementation prompt and suggested commit. Update this
 | --- | --- | --- |
 | 0. Scope, research, and layouts | Complete | This plan, aligned scope docs, retired homepage plan. No application changes. |
 | 1. Shared project catalog | Complete | Typed full catalog, explicit homepage selections, Webshare draft. |
-| 2. Collection and homepage link | Pending | `/projects` layout and working homepage entry point. |
+| 2. Collection and homepage link | Complete | `/projects` layout and working homepage entry point. |
 | 3. Detail layout | Pending | Reusable `/projects/[slug]` page with Webshare outline. |
 | 4. Approved Webshare story | Pending owner facts | Replace placeholders with personal contribution and evidence. |
 | 5. Validation and release readiness | Pending | Browser/production checks, content review, launch checklist. |
@@ -132,6 +132,17 @@ Done when: the shared catalog can grow without expanding the homepage, Webshare'
 Suggested implementation prompt: `Implement stage 1 of PROJECTS-PLAN.md only: extend the shared project catalog and homepage selection, starting with the labeled Webshare draft.`
 
 ### 2. Collection and homepage link
+
+Implemented October 11, 2026:
+
+- `app/projects/page.tsx` replaces the collection's coming-soon reservation. The Server Component page includes a skip link, shared navigation/footer, breadcrumb, typed introduction, draft notice, featured entry, remaining responsive grid, and contact invitation. Copy lives in `content/project-collection.ts`; every card uses the full existing catalog, including homepage selections.
+- The homepage header now has a Projects link, and Selected work has a visible `View all projects` action. Existing Work/hero anchors remain intact. Subpage header links resolve to homepage sections, with Home navigation and an accessible current-page marker on the collection.
+- The shared card's collection variant presents the featured preview beside its text on desktop, stacks on small screens, and shows contribution text without a disclosure. Homepage case-study previews remain collapsed. All catalog cards link to their existing reserved detail URL with the explicit label `Project page preview`; those previews have a `Back to all projects` action.
+- Only `/projects` was removed from catch-all reservations. Detail previews and unrelated reserved pages remain statically generated. Collection metadata has its own title, description, canonical, and existing social images; noindex remains while drafts/placeholders exist. Webshare has no external product/source link.
+
+Validation: `npm.cmd run lint` and `npm.cmd run build` passed with TypeScript validation and static generation. Server render checks passed for the full catalog, a single project, an empty catalog, a catalog without a featured entry, and draft-notice handling; Webshare renders once and existing preview URLs remain reserved. Production HTTP checks passed for the homepage, collection, all detail previews, and remaining reserved pages; retired/unknown/extra-segment URLs returned 404. Checked all rendered internal link and anchor targets across homepage, collection, and Webshare preview, plus contact links, collection metadata/noindex, and both social image responses. Core collection text and links are present in server-rendered markup. Browser tools were unavailable, so mobile/desktop visual inspection, keyboard interaction, zoom, and reduced-motion checks remain pending. No dependency changes, test framework, or deployment were added.
+
+Original stage checklist:
 
 - Implement `/projects` with the shared header/footer, introduction, featured entry, remaining grid, and contact invitation.
 - Add a visible `View all projects` link near the homepage Selected work heading or end. Preserve the hero's existing `#work` action and homepage Work anchor.

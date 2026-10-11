@@ -53,11 +53,13 @@ Approved portfolio scope:
 /projects/[slug]      → dedicated detail for a catalog project
 ```
 
-Current implementation: `/about`, `/contact`, `/projects`, `/experience`, `/skills`, `/coming-soon`, and the current project slugs display a shared coming-soon screen. These are statically generated, explicit reserved paths; unlisted paths return 404. [PROJECTS-PLAN.md](./PROJECTS-PLAN.md) defines the staged replacement of `/projects` and project detail previews. The remaining reserved pages stay coming soon.
+Current implementation: `/projects` is a dedicated static collection page. `/about`, `/contact`, `/experience`, `/skills`, `/coming-soon`, and catalog project slugs display a shared coming-soon screen. These are statically generated, explicit reserved paths; unlisted paths return 404. [PROJECTS-PLAN.md](./PROJECTS-PLAN.md) records the completed collection stage and planned replacement of detail previews. The remaining reserved pages stay coming soon.
 
 Implement the collection in `app/projects/page.tsx` and details in `app/projects/[slug]/page.tsx`. Remove each migrated path from `content/coming-soon.ts` when its real route takes over; the catch-all must not generate paths also owned by dedicated routes. Generate detail params from the same typed catalog used by the collection, await the installed Next.js version's asynchronous params, and retain `dynamicParams = false` plus a `notFound()` guard for unknown slugs. Unknown nested project paths must also return 404. Use `next/link` for navigation between pages and correct homepage-prefixed anchors on subpages.
 
 Homepage case-study previews remain collapsed within project cards. Add a visible collection link in Selected work and a detail link only for a route that exists. Draft project pages containing placeholders stay noindex until approved; route metadata comes from the catalog rather than duplicated claims. Keep all core content server-rendered and static-friendly.
+
+Stage 2 adds Projects navigation and a Selected work collection action, using `next/link`. The collection uses the full catalog, emphasizes its first featured entry without duplication, and keeps contribution summaries expanded. Shared `ProjectCard` accepts a homepage/collection presentation variant and links to the explicit reserved detail route, labeled `Project page preview` until stage 3. Detail previews include a return-to-collection action. Collection presentation copy lives in `content/project-collection.ts`; project facts remain in `content/projects.ts`. The collection's metadata uses its own title/description/canonical with the existing site preview images and stays noindex while entries are drafts or design placeholders. No routes are generated for the collection by the catch-all.
 
 No other routes unless this file is updated (no `/blog`, `/services`, `/admin`).
 

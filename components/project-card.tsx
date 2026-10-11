@@ -42,7 +42,7 @@ export function ProjectCard({ project, variant = "homepage" }: { project: Projec
           <h3 id={titleId} className="text-2xl font-semibold tracking-tight sm:text-3xl">{project.title}</h3>
           <p className="mt-3 max-w-3xl text-base leading-7 text-muted">{project.summary}</p>
           {variant === "collection" && project.caseStudy?.contribution && <p className="mt-4 max-w-3xl text-base leading-7"><span className="mb-1 block font-mono text-xs text-accent">My contribution</span>{project.caseStudy.contribution}</p>}
-          <p className="mt-4 max-w-3xl text-base leading-7"><span className="mr-2 text-accent" aria-hidden="true">↳</span>{project.outcome}</p>
+          {project.outcome && <p className="mt-4 max-w-3xl text-base leading-7"><span className="mr-2 text-accent" aria-hidden="true">↳</span>{project.outcome}</p>}
         </div>
         {project.tags.length > 0 && <ul aria-label={`${project.title} technologies`} className="flex flex-wrap gap-2 font-mono text-xs text-muted">
           {project.tags.map((tag) => <li key={tag} className="rounded border border-border px-3 py-2">{tag}</li>)}

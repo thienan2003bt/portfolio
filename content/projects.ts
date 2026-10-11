@@ -1,7 +1,8 @@
 import type { Project } from "./types";
 
-// One catalog for homepage selections, the future collection, and detail routes.
-// Draft prompts are intentional; replace them with approved facts before launch.
+// One catalog for homepage selections, the collection, and detail routes.
+// Suggested narratives are explicitly labeled and must be verified before launch.
+const contributionDraftNotice = "The problem, approach, reasoning, trade-off, and verification below are illustrative suggestions. Replace them with what actually happened before publishing.";
 export const projects: readonly Project[] = ([
   {
     slug: "webshare-space",
@@ -9,53 +10,62 @@ export const projects: readonly Project[] = ([
     status: "draft",
     type: "company",
     summary: "A browser-based app for sharing files in private, temporary spaces.",
-    outcome: "Outcome — placeholder: add a verified improvement and supporting evidence.",
     role: "Full-stack Developer",
     period: "Apr 2025 — present",
     periodNote: "Started approximately April 15, 2025; involvement is ongoing.",
-    tags: [],
-    stackNote: "Stack — to confirm",
+    tags: ["Vite", "React", "JavaScript", "Rust", "Actix"],
+    stackNote: "Frontend: Vite, React, and JavaScript. Backend: Rust with Actix; my backend contribution includes multipart-upload code.",
     selected: true,
     order: 1,
     featured: true,
     // The owner requests naming the product without an external product link.
     links: {},
     caseStudy: {
-      context: "Webshare is a company web application for private, temporary file sharing. Context — to confirm: intended users, the starting point, and project constraints.",
-      contribution: "I am responsible for the entire frontend. My work includes end-to-end encryption, multipart upload, resumable download, and Core Web Vitals performance improvements. Implementation details and results are still to be documented.",
-      decision: "Technical decision — placeholder: explain one choice, the alternatives considered, and the trade-offs.",
-      architecture: ["Architecture — placeholder: add confirmed components and their responsibilities."],
-      constraints: ["Constraints — placeholder: describe the product state, users, and technical or business limits that shaped the work."],
-      collaboration: "Team and backend scope — to confirm.",
+      context: "Webshare is a company web application for sharing files through a browser in private, temporary spaces.",
+      contribution: "I own the entire frontend as a Full-stack Developer. My work includes end-to-end encryption, multipart upload, resumable download, and Core Web Vitals performance improvements.",
+      collaboration: "I work in a small startup team. Most of my work is on the frontend, and I rarely touch the Rust backend. The backend code for multipart upload is my own work.",
       contributions: [
         {
           title: "End-to-end encryption",
-          summary: "Contribution reported by the owner. Details — placeholder: explain personal scope, the difficult part, and how correctness was checked.",
+          summary: "My work on Webshare includes end-to-end encryption.",
+          draftNotice: contributionDraftNotice,
+          problem: "Draft assumption: encryption needed to fit the file-sharing flow without making transfers confusing or difficult to recover when an error occurred.",
+          change: "Suggested approach: connect encryption and decryption to the transfer interface, with clear progress and failure states. Update this with the exact part I implemented.",
+          reasoning: "Suggested reasoning: privacy-related work should fit an understandable sharing flow, so users can tell when a transfer is ready and when it needs attention.",
+          tradeOff: "Potential trade-off to confirm: processing files in the browser can add work on slower devices, while more detailed error handling adds complexity to the interface.",
+          evidence: "Consider checking successful transfers, failed decryption, and error messages with non-sensitive sample files. Record only checks actually performed; do not imply a security audit.",
         },
         {
           title: "Multipart upload",
-          summary: "Contribution reported by the owner. Details — placeholder: explain the original problem, upload handling, and validation.",
+          summary: "I worked on multipart upload, including writing its backend code.",
+          draftNotice: contributionDraftNotice,
+          problem: "Draft assumption: uploading a file as one long operation made interruptions expensive and progress difficult to communicate.",
+          change: "Suggested approach: coordinate multipart transfers between the frontend and backend, show overall progress, and handle failed parts. Confirm how retries, cancellation, and completion actually worked.",
+          reasoning: "Suggested reasoning: handling a transfer in smaller parts can make failures easier to isolate and progress easier to explain than restarting one large request.",
+          tradeOff: "Potential trade-off to confirm: more requests and transfer state can improve recovery but require extra coordination and cleanup when a transfer fails or is cancelled.",
+          evidence: "Consider an interrupted upload, a failed part, cancellation, and a completed file-integrity check. Replace these suggestions with the actual checks and observed behavior.",
         },
         {
           title: "Resumable download",
-          summary: "Contribution reported by the owner. Details — placeholder: explain interrupted downloads, progress recovery, and an edge case.",
+          summary: "I worked on resumable download for file transfers.",
+          draftNotice: contributionDraftNotice,
+          problem: "Draft assumption: interrupted downloads forced recipients to restart, wasting time and repeating transferred data.",
+          change: "Suggested approach: retain enough progress information to continue an interrupted download, show its state, and explain when restarting is necessary. Confirm which interruptions were actually supported.",
+          reasoning: "Suggested reasoning: recovery should reduce repeated work while making the download's current state and next action clear to the recipient.",
+          tradeOff: "Potential trade-off to confirm: keeping recovery state adds complexity, particularly when a shared file is no longer available or encryption affects how a transfer can continue.",
+          evidence: "Consider interrupting a download, attempting to continue it, checking an unavailable file, and comparing the completed file with the original. Document the actual recovery limits.",
         },
         {
           title: "Core Web Vitals performance improvements",
-          summary: "Contribution reported by the owner. Details — placeholder: identify the metric, the change, and the measurement method before adding results.",
+          summary: "I worked on performance improvements focused on Core Web Vitals.",
+          draftNotice: contributionDraftNotice,
+          problem: "Draft assumption: a key page loaded slowly, responded late to interaction, or shifted while rendering. Identify the real page and metric before making this specific.",
+          change: "Suggested approach: measure the page, identify the largest source of delay or instability, and reduce unnecessary loading or rendering work. Replace this with the actual bottleneck and code change.",
+          reasoning: "Suggested reasoning: improve the measured user-facing bottleneck first, then compare the same page under comparable conditions rather than optimizing from intuition alone.",
+          tradeOff: "Potential trade-off to confirm: delaying less urgent work may improve the initial experience but add loading states or make later interactions more complex.",
+          evidence: "Record the metric, page, device, measurement method, and before/after conditions. Distinguish lab runs from field data; no improvement score or percentage is claimed yet.",
         },
       ],
-      challenges: [
-        {
-          title: "Challenge — placeholder",
-          problem: "Choose one of the contribution topics above and describe a concrete problem you encountered.",
-          investigation: "Investigation — placeholder: explain how you reproduced the problem and identified its cause.",
-          solution: "Solution — placeholder: explain what you changed and why it fit the constraints.",
-          validation: "Validation — placeholder: add how you checked the result and what remained difficult.",
-        },
-      ],
-      limitations: ["Limitations — placeholder: explain an unresolved constraint or a trade-off in the solution."],
-      lessons: ["Lesson — placeholder: explain what you learned and what you would revisit today."],
     },
   },
   {

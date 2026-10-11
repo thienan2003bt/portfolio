@@ -1,6 +1,6 @@
-import type { ProjectCaseStudy } from "@/content/types";
+import type { Project, ProjectCaseStudy } from "@/content/types";
 
-export function ProjectCaseStudyContent({ study, outcome }: { study: ProjectCaseStudy; outcome: string }) {
+export function ProjectCaseStudyContent({ study, outcome }: { study: ProjectCaseStudy; outcome?: Project["outcome"] }) {
   const summaries: readonly (readonly [string, string | undefined])[] = [
     ["Context", study.context],
     ["Contribution", study.contribution],

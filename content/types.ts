@@ -33,8 +33,11 @@ export type ProjectImage = {
 export type ProjectContribution = {
   title: string;
   summary: string;
+  draftNotice?: string;
   problem?: string;
   change?: string;
+  reasoning?: string;
+  tradeOff?: string;
   evidence?: string;
 };
 
@@ -88,7 +91,7 @@ export type Project = {
   slug: string;
   title: string;
   summary: string;
-  outcome: string;
+  outcome?: string;
   role: string;
   period: string;
   periodNote?: string;

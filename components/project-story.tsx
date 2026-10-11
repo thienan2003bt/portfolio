@@ -37,7 +37,8 @@ export function ProjectStory({ project, content }: { project: Project; content: 
         <p className="mb-2 font-mono text-xs text-accent">{String(index + 1).padStart(2, "0")}</p>
         <h3 className="text-xl font-semibold tracking-tight">{contribution.title}</h3>
         <p className="mt-3 text-base leading-8 text-muted">{contribution.summary}</p>
-        <Notes items={[["Problem", contribution.problem], ["My change", contribution.change], ["Evidence", contribution.evidence]]} />
+        {contribution.draftNotice && <p className="mt-4 rounded border border-accent/25 bg-surface px-4 py-3 text-sm leading-7 text-muted"><span className="mb-1 block font-mono text-xs text-accent">Suggested narrative · update later</span>{contribution.draftNotice}</p>}
+        <Notes items={[["Problem", contribution.problem], ["My change", contribution.change], ["Reasoning", contribution.reasoning], ["Trade-off", contribution.tradeOff], [contribution.draftNotice ? "Suggested verification" : "Evidence", contribution.evidence]]} />
       </div>
     ))}</div>,
   });

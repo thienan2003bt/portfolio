@@ -1,10 +1,10 @@
 # Projects implementation plan
 
-Status: stages 1 through 3 complete on `feat/project-pages`. The shared catalog, homepage selection/navigation, collection, and static project detail layouts are implemented. Webshare has a full labeled case-study outline; the other design entries have shorter detail pages. Approved writing/evidence and release review remain stages 4 and 5. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
+Status: stages 1 through 3 complete on `feat/project-pages`; stage 4 has confirmed scope/stack and suggested narratives for all four Webshare contributions. The owner requested illustrative reasoning labeled for later revision. Technical stories, results, media, and disclosure approval remain pending; stage 4 is still in progress and stage 5 has not started. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
 
 ## Goal and boundaries
 
-Give recruiters and clients two reading paths: scan a career-wide collection, or read the engineering story behind one project. Include homepage projects in the collection using one source of truth. Start with Webshare.space, the owner's largest project. The owner reports working as a Full-stack Developer since approximately April 15, 2025, with no fixed contract end date and responsibility for the whole frontend. Use `Apr 2025 — present` in the draft, retaining the approximate start date in author notes; do not turn the earlier rough duration into a calendar claim. Team setup, backend ownership, stack, implementation detail, and results are still unknown.
+Give recruiters and clients two reading paths: scan a career-wide collection, or read the engineering story behind one project. Include homepage projects in the collection using one source of truth. Start with Webshare.space, the owner's largest project. The owner reports working as a Full-stack Developer since approximately April 15, 2025, with no fixed contract end date and responsibility for the whole frontend. Use `Apr 2025 — present` in the draft, retaining the approximate start date in author notes; do not turn the earlier rough duration into a calendar claim. The frontend uses Vite, React, and JavaScript (not TypeScript); the backend uses Rust with Actix. The owner works in a small startup team, rarely touches backend code, and wrote the multipart-upload backend code. Exact team size, implementation detail, and results remain unknown.
 
 The owner identified end-to-end encryption, multipart upload, resumable download, and Core Web Vitals performance improvements as problems they solved. These are owner-reported candidate contributions; their precise scope, decisions, and evidence remain to be collected. Mention Webshare by name without an external product link, including in draft UI. Research citations below are planning references only. Screenshot and internal-detail disclosure scope remains unconfirmed.
 
@@ -37,7 +37,7 @@ The initial real slug will be `/projects/webshare-space`. Show a useful summary 
 | Order | Block | Needed information / draft treatment |
 | --- | --- | --- |
 | 1 | Header and breadcrumb | `Home / Projects / Webshare.space`; link back to the collection. |
-| 2 | Project hero | Title, product purpose, personal contribution, project type, role, period, verified stack, available links. For Webshare: Full-stack Developer, `Apr 2025 — present`, whole frontend ownership; detailed achievements and stack remain placeholders. No external product link. |
+| 2 | Project hero | Title, product purpose, personal contribution, project type, role, period, verified stack, available links. For Webshare: Full-stack Developer, `Apr 2025 — present`, whole frontend ownership, Vite/React/JavaScript frontend and Rust/Actix backend; detailed achievements remain drafts. No external product link. |
 | 3 | Main product preview | Approved screenshot with caption explaining the flow and what the owner worked on; otherwise `Product screenshot — placeholder`. |
 | 4 | At a glance | Concise problem, ownership, and result summary. These should be understandable without expanding anything. |
 | 5 | Context and constraints | Intended users, their problem, project state on joining, business/technical constraints. |
@@ -73,9 +73,9 @@ Potential strengths to investigate are low-friction sharing and privacy-oriented
 | Product summary | `A browser-based app for sharing files in private, temporary spaces.` Public product context, not a personal achievement. |
 | Involvement | Ongoing since approximately April 15, 2025; no fixed contract end date reported. |
 | Personal contribution | `Responsible for the entire frontend.` Detailed stories for encryption, multipart upload, resumable download, and Core Web Vitals remain outlines pending specifics. |
-| Role / period | `Full-stack Developer` / `Apr 2025 — present`. Start date is approximate. Backend responsibilities and team setup remain to confirm. |
-| Stack | `Stack — to confirm`. Do not reuse general portfolio skill tags as project facts. |
-| Result | `Outcome — placeholder: a verified improvement and supporting evidence.` |
+| Role / period | `Full-stack Developer` / `Apr 2025 — present`. Start date is approximate. Small startup team; whole frontend and multipart-upload backend code owned by the author. |
+| Stack | Frontend: Vite, React, JavaScript. Backend: Rust, Actix. Distinguish whole-frontend ownership from the specific multipart-upload backend contribution. |
+| Result | Omitted until a verified improvement and supporting evidence are supplied. |
 | Media | Labeled preview frame until an approved screenshot and caption are available. |
 | Links | No external product link, per the owner's request. No source link supplied. Internal collection/detail navigation is allowed; render the project name as plain text. |
 | Status | Draft with explicit placeholder labels and noindex. Shipped feature status remains unconfirmed. |
@@ -104,7 +104,7 @@ Each stage is a separate implementation prompt and suggested commit. Update this
 | 1. Shared project catalog | Complete | Typed full catalog, explicit homepage selections, Webshare draft. |
 | 2. Collection and homepage link | Complete | `/projects` layout and working homepage entry point. |
 | 3. Detail layout | Complete | Reusable `/projects/[slug]` page with Webshare outline. |
-| 4. Approved Webshare story | Pending owner facts | Replace placeholders with personal contribution and evidence. |
+| 4. Approved Webshare story | In progress: suggested narratives added | Confirmed scope/stack and labeled drafts; actual stories, evidence, and approval pending. |
 | 5. Validation and release readiness | Pending | Browser/production checks, content review, launch checklist. |
 
 ### 1. Shared project catalog
@@ -182,6 +182,18 @@ Suggested implementation prompt: `Implement stage 3 of PROJECTS-PLAN.md only: bu
 
 ### 4. Approved Webshare story
 
+Draft revision implemented October 11, 2026:
+
+- Added the owner's confirmed Vite/React/JavaScript frontend, Rust/Actix backend, small startup team, and personal ownership of multipart-upload backend code. The frontend language is JavaScript; do not substitute the portfolio's TypeScript stack.
+- At the owner's request, added suggested problem, approach, reasoning, trade-off, and verification copy for **all four** reported contributions. Each topic keeps its confirmed summary separate from a visible `Suggested narrative · update later` notice. The proposed details are examples to revise, not assertions about the actual implementation or completed checks.
+- Omitted unsupported architecture, decisions, challenge, outcome, and lesson sections instead of leaving generic author questions in the article. Made the shared project outcome optional and guarded the card/preview display, so missing evidence does not require an invented result. Existing illustrative catalog entries remain unchanged.
+- Screenshot and internal-detail permissions remain uncertain. Retained the labeled media frame, omitted internal diagrams/source and product links, and kept the entry and collection noindex. No security algorithm, storage provider, file limit, team count, measured score, or completed verification is asserted.
+- The owner will revise the suggested narratives in upcoming work. Stage 4 cannot be marked approved until actual actions/results and disclosure scope are confirmed; do not remove draft labeling or noindex as part of this revision.
+
+Validation: `npm.cmd run lint` and `npm.cmd run build` passed, including TypeScript validation and static generation. Production HTTP/HTML checks passed for the homepage, collection, and all three details: shared confirmed facts, four visible narrative notices/reasoning/trade-off/suggested-verification blocks, absent unsupported sections, draft noindex, no external Webshare URL, native anchors, and the preserved homepage disclosure. An unknown slug returned 404. Documentation links and the final diff were checked. Browser tools were unavailable; visual, keyboard, zoom, and reduced-motion checks remain pending. No dependency changes, commit, or deployment were made.
+
+Remaining stage checklist:
+
 - Use the interview below to refine the confirmed role/frontend ownership/start date and establish team setup, backend scope, stack, disclosure permissions, and evidence.
 - Choose two or three strongest contributions and one substantial challenge. Write concrete problem → personal action → decision → result narratives; distinguish individual and team work.
 - Add approved optimized screenshots and captions, a factual architecture diagram, and available evidence. Qualitative outcomes are acceptable; measured claims need a baseline and measurement method.
@@ -211,11 +223,14 @@ For every project, start with title, project type, purpose/users, role, dates, p
 
 ### First Webshare interview
 
-Initial answers received; rough bullet points are sufficient. Preserve these facts and avoid asking the same questions again:
+Initial and follow-up answers received; rough bullet points are sufficient. Preserve these facts and avoid asking the same questions again:
 
-1. **Role and period:** Full-stack Developer; start approximately April 15, 2025; ongoing, with no fixed contract end date; the whole frontend is the owner's responsibility. Team setup and backend scope were not supplied.
+1. **Role and period:** Full-stack Developer; start approximately April 15, 2025; ongoing, with no fixed contract end date; the whole frontend is the owner's responsibility. Follow-up team/backend facts are recorded below.
 2. **Problems solved:** end-to-end encryption, multipart upload, resumable download, and Core Web Vitals performance improvements. The owner may add more as they remember. Implementation narratives and results were not supplied.
 3. **Naming and links:** mention Webshare by name, without linking externally to the app. Screenshot and internal-detail permissions were not supplied. Omit employer attribution until confirmed.
+4. **Stack and team:** Vite, React, and JavaScript on the frontend; Rust with Actix on the backend. A small startup team, with no exact size supplied. The owner rarely touches the backend, but wrote the backend multipart-upload code.
+5. **Draft writing preference:** generate suitable reasoning for every reported contribution with labels requiring later revision. These suggestions are not evidence of the actual implementation. Replace them with owner-confirmed stories before approval.
+6. **Disclosure follow-up:** the owner is unsure what technical details or screenshots can be published and requests ambiguous descriptions for now. Keep the draft high-level and omit internal designs, code, and real media until scope is confirmed.
 
 ### Next interview: turn a named contribution into a story
 
@@ -228,7 +243,7 @@ Choose one topic first; there is no need to answer every topic at once:
 | Resumable download | What event interrupted downloads, how did you track/recover progress, and did encrypted transfers introduce extra constraints? Describe one edge case and how you checked it. |
 | Core Web Vitals | Which metric did you target (LCP, INP, or CLS), what caused the problem, and what did you change? Were comparisons from Lighthouse/lab runs or real-user field data, on which page/device, and over what period? No numbers are required until evidence is available. |
 
-Also collect actual frontend/backend technologies and team responsibilities. Request approved screenshots later when needed; a labeled media placeholder is sufficient for the layout stages.
+The frontend/backend technologies and qualitative team setup are now supplied. Clarify individual decisions, implementation details, and actual results when revising each suggested narrative. Request approved screenshots later when disclosure scope is known; a labeled media placeholder is sufficient for now.
 
 ### Follow-up prompts for the engineering story
 

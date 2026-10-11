@@ -63,6 +63,8 @@ Stage 2 adds Projects navigation and a Selected work collection action, using `n
 
 Stage 3 adds static params and project metadata from the full catalog, with an unknown-slug guard and noindex for drafts/design entries. Detail presentation copy lives in `content/project-detail.ts`; typed project facts and outline prompts stay in `content/projects.ts`. Server-rendered detail sections and contents links are built from the same populated section list, with native anchors and no required motion or JavaScript. Reusable media renders dimensioned `next/image` assets and optional captions. Unsupplied optional blocks and related drafts/placeholders are omitted; a long Webshare outline and shorter design entries use the same template. Homepage case-study disclosures remain concise previews, separate from the expanded detail layout but sharing the same content record.
 
+Stage 4 refines Webshare's confirmed stack and ownership while keeping suggested narratives separate from facts. `ProjectContribution` supports an optional draft notice, reasoning, and trade-off; the story renders that notice beside the proposed problem/change/verification copy. Suggested verification is labeled as a proposal, not completed evidence. Project outcomes are optional: omit missing results in cards, collapsed previews, and details. Unsupported architecture, challenges, and lessons stay absent until supplied. The owner's uncertain disclosure scope keeps internal designs and real screenshots omitted, and draft/noindex status remains in place until approval.
+
 No other routes unless this file is updated (no `/blog`, `/services`, `/admin`).
 
 ### Intended folders

@@ -1,6 +1,6 @@
 # Projects implementation plan
 
-Status: stages 1 and 2 complete on `feat/project-pages`. The shared catalog, explicit homepage selection, and `/projects` collection are implemented, including the Webshare draft and homepage navigation. Catalog detail URLs remain coming-soon previews linked from project cards; full detail layouts are stage 3. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
+Status: stages 1 through 3 complete on `feat/project-pages`. The shared catalog, homepage selection/navigation, collection, and static project detail layouts are implemented. Webshare has a full labeled case-study outline; the other design entries have shorter detail pages. Approved writing/evidence and release review remain stages 4 and 5. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
 
 ## Goal and boundaries
 
@@ -103,7 +103,7 @@ Each stage is a separate implementation prompt and suggested commit. Update this
 | 0. Scope, research, and layouts | Complete | This plan, aligned scope docs, retired homepage plan. No application changes. |
 | 1. Shared project catalog | Complete | Typed full catalog, explicit homepage selections, Webshare draft. |
 | 2. Collection and homepage link | Complete | `/projects` layout and working homepage entry point. |
-| 3. Detail layout | Pending | Reusable `/projects/[slug]` page with Webshare outline. |
+| 3. Detail layout | Complete | Reusable `/projects/[slug]` page with Webshare outline. |
 | 4. Approved Webshare story | Pending owner facts | Replace placeholders with personal contribution and evidence. |
 | 5. Validation and release readiness | Pending | Browser/production checks, content review, launch checklist. |
 
@@ -156,6 +156,18 @@ Done when: visitors can reach the career collection from the homepage, see homep
 Suggested implementation prompt: `Implement stage 2 of PROJECTS-PLAN.md only: build the project collection and link it from the homepage using the shared catalog.`
 
 ### 3. Detail layout
+
+Implemented October 11, 2026:
+
+- `app/projects/[slug]/page.tsx` generates all catalog slugs at build time, awaits params, and uses a shared lookup with `notFound()` for unknown slugs. It composes the shared header/footer, skip link, breadcrumb, typed detail layout, return-to-collection action, and contact. Metadata comes from the project record, with draft labels, noindex for draft/design entries, a per-slug canonical, and existing social images.
+- `ProjectDetail` shows the project purpose, personal contribution, role/period/type/stack, clear draft notice, screenshot placeholder or captioned image, and expanded story. `ProjectStory` supports summary/context/role, contributions, alternatives and trade-offs, architecture notes, challenges, outcomes/evidence, lessons/limitations, milestones, and gallery images. It builds contents links from the exact rendered section list; long entries show a mobile list and sticky desktop sidebar. Shorter entries omit the contents navigation.
+- `content/project-detail.ts` holds presentation copy; project facts remain in `content/projects.ts`. Webshare's existing owner-reported facts are supplemented only by explicit constraint/challenge/lesson prompts. No architecture, metrics, technologies, screenshot, employer identity, or source/product URL was invented. Optional absent sections are omitted. Reusable `ProjectMedia` uses image dimensions and captions, with eager loading for a supplied main preview and lazy gallery images.
+- All cards now use `View project` links. The two generic design entries have concise detail pages and retain their design-placeholder labels. Other published real work may appear at the end of a detail page when supplied; current drafts/placeholders are excluded from that section.
+- Project reservations and their temporary coming-soon return-link code were removed. Only the five unrelated reserved pages remain in the catch-all; the homepage's collapsed case-study preview remains intact.
+
+Validation: `npm.cmd run lint` and `npm.cmd run build` passed, including TypeScript and static generation of all three detail routes. Ad hoc server render checks passed for Webshare's full outline, shorter design entries, sparse approved content, and optional images/captions, structured decisions, evidence, and milestones. Production HTTP checks passed for homepage, collection, all details, and remaining reserved pages; retired/unknown/extra-segment paths returned 404. Verified every rendered internal link and contents/section anchor across homepage, collection, and detail pages; single H1/unique main IDs, draft metadata/canonicals/social-image references, contact links, visible contribution content, absent external Webshare URL, and preserved homepage disclosures. Browser tools were unavailable, so visual, keyboard, zoom, and reduced-motion checks remain pending. No dependencies, test framework, or deployment were added.
+
+Original stage checklist:
 
 - Implement static detail pages from catalog slugs, beginning with the Webshare draft. Every linked draft entry gets a valid labeled page; it may be shorter when detail content is absent.
 - Build the hero, facts, image placeholder/gallery, article sections, optional contents links, and back/contact actions. Use reusable blocks with proper heading levels rather than transplanting homepage `h4` sections unchanged.

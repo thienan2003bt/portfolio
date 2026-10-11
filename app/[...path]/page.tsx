@@ -24,5 +24,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ReservedPage({ params }: Props) {
   const page = await getPage(params);
-  return <ComingSoon title={page.title} description={page.description} projectPreview={page.path.startsWith("projects/")} />;
+  return <ComingSoon title={page.title} description={page.description} />;
 }

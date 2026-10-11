@@ -114,6 +114,26 @@ export type ProjectCollectionContent = {
   emptyMessage: string;
 };
 
+export type ProjectDetailContent = {
+  draftNotice: string;
+  placeholderNotice: string;
+  mediaPlaceholder: string;
+  typeLabels: Record<NonNullable<Project["type"]>, string>;
+  headings: {
+    overview: string;
+    context: string;
+    role: string;
+    contributions: string;
+    decisions: string;
+    architecture: string;
+    challenges: string;
+    outcomes: string;
+    lessons: string;
+    milestones: string;
+    gallery: string;
+  };
+};
+
 export type SkillGroup = {
   id: string;
   title: string;

@@ -49,7 +49,7 @@ export function ProjectCard({ project, variant = "homepage" }: { project: Projec
         </ul>}
         {project.stackNote && <p className="font-mono text-xs text-muted">{project.stackNote}</p>}
         <div className="mt-auto flex flex-wrap gap-3 font-mono text-sm">
-          <Link href={`/projects/${project.slug}`} className="inline-flex min-h-12 items-center gap-2 rounded border border-accent/40 px-4 text-accent hover:border-accent hover:bg-surface-raised" aria-label={`Project page preview for ${project.title}`}>Project page preview <span aria-hidden="true">→</span></Link>
+          <Link href={`/projects/${project.slug}`} className="inline-flex min-h-12 items-center gap-2 rounded border border-accent/40 px-4 text-accent hover:border-accent hover:bg-surface-raised" aria-label={`View project: ${project.title}`}>View project <span aria-hidden="true">→</span></Link>
           {project.links.live && <a href={project.links.live} className="inline-flex min-h-12 items-center rounded bg-accent px-4 text-accent-foreground hover:bg-foreground" aria-label={`Live demo of ${project.title}`}>Live demo ↗</a>}
           {project.links.github && <a href={project.links.github} className="inline-flex min-h-12 items-center rounded border border-border px-4 hover:border-accent hover:text-accent" aria-label={`Source code for ${project.title}`}>Source code ↗</a>}
         </div>

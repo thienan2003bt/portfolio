@@ -25,6 +25,7 @@ export const projects: readonly Project[] = ([
       contribution: "I am responsible for the entire frontend. My work includes end-to-end encryption, multipart upload, resumable download, and Core Web Vitals performance improvements. Implementation details and results are still to be documented.",
       decision: "Technical decision — placeholder: explain one choice, the alternatives considered, and the trade-offs.",
       architecture: ["Architecture — placeholder: add confirmed components and their responsibilities."],
+      constraints: ["Constraints — placeholder: describe the product state, users, and technical or business limits that shaped the work."],
       collaboration: "Team and backend scope — to confirm.",
       contributions: [
         {
@@ -44,6 +45,17 @@ export const projects: readonly Project[] = ([
           summary: "Contribution reported by the owner. Details — placeholder: identify the metric, the change, and the measurement method before adding results.",
         },
       ],
+      challenges: [
+        {
+          title: "Challenge — placeholder",
+          problem: "Choose one of the contribution topics above and describe a concrete problem you encountered.",
+          investigation: "Investigation — placeholder: explain how you reproduced the problem and identified its cause.",
+          solution: "Solution — placeholder: explain what you changed and why it fit the constraints.",
+          validation: "Validation — placeholder: add how you checked the result and what remained difficult.",
+        },
+      ],
+      limitations: ["Limitations — placeholder: explain an unresolved constraint or a trade-off in the solution."],
+      lessons: ["Lesson — placeholder: explain what you learned and what you would revisit today."],
     },
   },
   {

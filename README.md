@@ -18,7 +18,7 @@ This repository is the source of truth for the public site. Visual design comes 
 | **Goal of this site** | Job applications and freelance opportunities |
 | **What you will find** | Selected work, company experience (case-study style where IP allows), skills grouped by area, a short about section, email + GitHub |
 
-The homepage introduces selected work and links to the career-wide project collection at `/projects`. Dedicated case studies at `/projects/[slug]` currently show coming-soon previews; their implementation follows [PROJECTS-PLAN.md](./PROJECTS-PLAN.md). Company work is described without leaking private code or client IP.
+The homepage introduces selected work and links to the career-wide project collection at `/projects`. Dedicated case studies at `/projects/[slug]` now use a shared detail layout, with explicitly labeled draft content until approved. Implementation and remaining content work follow [PROJECTS-PLAN.md](./PROJECTS-PLAN.md). Company work is described without leaking private code or client IP.
 
 ---
 
@@ -91,7 +91,7 @@ npm run lint
 
 ## Project status
 
-The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project stages 1 and 2 add a shared catalog, explicit homepage selection, and the `/projects` collection with a featured entry and responsive grid. Homepage navigation and Selected work link to the collection; project cards link to existing detail previews, which link back to the collection. Webshare's draft separates confirmed role, period, and contribution topics from missing stack, technical details, and results; the two remaining design entries are labeled placeholders. Experience is implemented but hidden until employment details are supplied. Full detail layouts remain stage 3. The collection and detail previews remain noindex while their content is unfinished.
+The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project stages 1 through 3 add a shared catalog, explicit homepage selection, the `/projects` collection, and static `/projects/[slug]` detail pages. Cards link to the detail pages, which include breadcrumbs and return-to-collection actions. Webshare's page separates confirmed role, period, and contribution topics from missing stack, technical details, and results; its full draft outline includes contents links, architecture notes, challenges, and lesson prompts. The two remaining design entries get shorter labeled pages. Experience is implemented but hidden until employment details are supplied. The collection and detail pages remain noindex while their content is unfinished. Approved Webshare writing and evidence are stage 4.
 
 Content is maintained in typed modules under `content/`. See [PROJECTS-PLAN.md](./PROJECTS-PLAN.md) for the next implementation stages, proposed layouts, Webshare research, and content interview. The completed homepage plan has been retired; its outstanding launch checks are preserved below and in the new plan.
 

@@ -45,14 +45,19 @@ Package manager: **npm** (lockfile: `package-lock.json`). Do not add pnpm/yarn u
 
 ### Routing
 
-v1:
+Approved portfolio scope:
 
 ```
-/                     → single landing page (all sections)
-/projects/[slug]      → optional case study (only if the project needs it)
+/                     → anchored homepage with selected work
+/projects             → career-wide project collection
+/projects/[slug]      → dedicated detail for a catalog project
 ```
 
-UI-preview exception requested by the owner: `/about`, `/contact`, `/projects`, `/experience`, `/skills`, `/coming-soon`, and the current project slugs display a shared coming-soon screen. These are statically generated, explicit reserved paths; unlisted paths return 404. Future real pages can replace the reserved routes. Homepage case-study details are collapsed within each project card rather than rendered as a separate section.
+Current implementation: `/about`, `/contact`, `/projects`, `/experience`, `/skills`, `/coming-soon`, and the current project slugs display a shared coming-soon screen. These are statically generated, explicit reserved paths; unlisted paths return 404. [PROJECTS-PLAN.md](./PROJECTS-PLAN.md) defines the staged replacement of `/projects` and project detail previews. The remaining reserved pages stay coming soon.
+
+Implement the collection in `app/projects/page.tsx` and details in `app/projects/[slug]/page.tsx`. Remove each migrated path from `content/coming-soon.ts` when its real route takes over; the catch-all must not generate paths also owned by dedicated routes. Generate detail params from the same typed catalog used by the collection, await the installed Next.js version's asynchronous params, and retain `dynamicParams = false` plus a `notFound()` guard for unknown slugs. Unknown nested project paths must also return 404. Use `next/link` for navigation between pages and correct homepage-prefixed anchors on subpages.
+
+Homepage case-study previews remain collapsed within project cards. Add a visible collection link in Selected work and a detail link only for a route that exists. Draft project pages containing placeholders stay noindex until approved; route metadata comes from the catalog rather than duplicated claims. Keep all core content server-rendered and static-friendly.
 
 No other routes unless this file is updated (no `/blog`, `/services`, `/admin`).
 
@@ -94,7 +99,7 @@ Author-facing facts live in `content/`, imported by the app. Suggested modules:
 | --------------- | --------------------------------------------------------------------------- |
 | `site.ts`       | Name, role, email, GitHub URL, optional resume path                         |
 | `hero.ts`       | Pitch, supporting lines, CTA labels                                         |
-| `projects.ts`   | Selected work: slug, title, outcome, role, year, tags, links, featured flag |
+| `projects.ts`   | Full catalog: shared summaries, homepage selection, detail content, draft status, evidence and available links |
 | `experience.ts` | Jobs: company, title, dates, bullets, stack                                 |
 | `skills.ts`     | Groups: frontend, backend, practices                                        |
 | `about.ts`      | Bio paragraphs                                                              |
@@ -102,11 +107,13 @@ Author-facing facts live in `content/`, imported by the app. Suggested modules:
 
 Types live next to the data or in `content/types.ts`. Components must not invent parallel shapes.
 
+The project phase extends the existing `Project` and `ProjectCaseStudy` types rather than maintaining separate homepage, collection, and detail records. Introduce explicit homepage selection and display order so enlarging the catalog does not enlarge Selected work. Keep featured emphasis separate from selection. Optional detail blocks include contribution, decisions, architecture, gallery, milestones, outcomes, limitations, and lessons; render only populated blocks in approved content. Clearly labeled drafts may show outlines while content is being collected. Do not infer a project's stack from the author's general skill list, or attribute public product features to the author without confirmation.
+
 Hero source samples live in `content/samples/` as complete source files with a `.txt` suffix. They are display assets and do not run in this application or add backend dependencies. `content/code-examples.ts` reads them on the server; only source text and metadata reach the interactive viewer. Output tracing includes the sample files for deployment. Samples are authored examples until replaced with the owner's verified project source.
 
 Case-study **long form** may be MDX under `content/projects/` keyed by `slug`. Front matter must match `projects.ts` (or MDX is the single source for that slug — pick one and stay consistent).
 
-**Never commit secrets**, client names under NDA, private URLs, or env keys. Company case studies stay anonymized.
+**Never commit secrets**, client names under NDA, private URLs, or env keys. Company case studies stay anonymized by default. The owner permits mentioning Webshare.space by name and explicitly requests no external product link, including in draft UI. Its URL is a research source only. Publish employer attribution, screenshots, or internal implementation detail only within the owner's confirmed disclosure scope. Research notes belong in planning documents; the site must not fetch the referenced product at runtime.
 
 ---
 

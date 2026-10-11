@@ -7,7 +7,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article aria-labelledby={titleId} className={`flex min-w-0 flex-col overflow-hidden rounded-lg border bg-surface ${project.featured ? "border-accent/50 md:col-span-2" : "border-border"}`}>
-      {project.placeholder && !project.image && (
+      {project.status === "draft" && !project.image && (
         <div className="flex aspect-[16/7] items-center justify-center border-b border-border bg-surface-raised p-6" aria-label="Project image placeholder">
           <div className="w-full max-w-sm rounded border border-border bg-background p-4" aria-hidden="true">
             <div className="mb-4 flex gap-1.5">{[0, 1, 2].map((dot) => <span key={dot} className="h-1.5 w-1.5 rounded-full bg-muted/40" />)}</div>
@@ -30,28 +30,30 @@ export function ProjectCard({ project }: { project: Project }) {
       )}
       <div className="flex flex-1 flex-col gap-6 p-6 sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-muted">
-          <span>{project.role} · {project.year}</span>
+          <span>{project.role} · {project.period}</span>
           {project.featured && <span className="rounded border border-accent/40 px-2 py-1 text-accent">Featured project</span>}
         </div>
         <div>
           {project.placeholder && <p className="mb-2 font-mono text-xs text-accent">Design placeholder</p>}
+          {project.status === "draft" && !project.placeholder && <p className="mb-2 font-mono text-xs text-accent">Draft case study · details pending</p>}
           <h3 id={titleId} className="text-2xl font-semibold tracking-tight sm:text-3xl">{project.title}</h3>
           <p className="mt-3 max-w-3xl text-base leading-7 text-muted">{project.summary}</p>
           <p className="mt-4 max-w-3xl text-base leading-7"><span className="mr-2 text-accent" aria-hidden="true">↳</span>{project.outcome}</p>
         </div>
-        <ul aria-label={`${project.title} technologies`} className="flex flex-wrap gap-2 font-mono text-xs text-muted">
+        {project.tags.length > 0 && <ul aria-label={`${project.title} technologies`} className="flex flex-wrap gap-2 font-mono text-xs text-muted">
           {project.tags.map((tag) => <li key={tag} className="rounded border border-border px-3 py-2">{tag}</li>)}
-        </ul>
-        <div className="mt-auto flex flex-wrap gap-3 font-mono text-sm">
+        </ul>}
+        {project.stackNote && <p className="font-mono text-xs text-muted">{project.stackNote}</p>}
+        {(project.links.live || project.links.github) && <div className="mt-auto flex flex-wrap gap-3 font-mono text-sm">
           {project.links.live && <a href={project.links.live} className="inline-flex min-h-12 items-center rounded bg-accent px-4 text-accent-foreground hover:bg-foreground" aria-label={`Live demo of ${project.title}`}>Live demo ↗</a>}
           {project.links.github && <a href={project.links.github} className="inline-flex min-h-12 items-center rounded border border-border px-4 hover:border-accent hover:text-accent" aria-label={`Source code for ${project.title}`}>Source code ↗</a>}
-        </div>
+        </div>}
         {project.caseStudy && <details className="group border-t border-border pt-4">
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-mono text-sm text-accent [&::-webkit-details-marker]:hidden">
-            {project.placeholder ? "Case-study preview" : "Behind the build"}
+            {project.status === "draft" ? "Case-study preview" : "Behind the build"}
             <span aria-hidden="true" className="group-open:rotate-45 motion-safe:transition-transform">+</span>
           </summary>
-          <ProjectCaseStudyContent study={project.caseStudy} />
+          <ProjectCaseStudyContent study={project.caseStudy} outcome={project.outcome} />
         </details>}
       </div>
     </article>

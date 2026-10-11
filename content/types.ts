@@ -22,26 +22,85 @@ export type CodeExample = {
   code: string;
 };
 
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+};
+
+export type ProjectContribution = {
+  title: string;
+  summary: string;
+  problem?: string;
+  change?: string;
+  evidence?: string;
+};
+
+export type ProjectDecision = {
+  title: string;
+  choice: string;
+  alternatives?: readonly string[];
+  reasoning?: string;
+  tradeOff?: string;
+};
+
+export type ProjectChallenge = {
+  title: string;
+  problem: string;
+  investigation?: string;
+  solution?: string;
+  validation?: string;
+};
+
+export type ProjectOutcome = {
+  result: string;
+  evidence?: string;
+};
+
+export type ProjectMilestone = {
+  period: string;
+  title: string;
+  description: string;
+};
+
 export type ProjectCaseStudy = {
-  context: string;
-  contribution: string;
-  decision: string;
-  architecture: readonly string[];
-  outcome: string;
+  context?: string;
+  contribution?: string;
+  decision?: string;
+  architecture?: readonly string[];
+  outcome?: string;
+  constraints?: readonly string[];
+  collaboration?: string;
+  contributions?: readonly ProjectContribution[];
+  decisions?: readonly ProjectDecision[];
+  challenges?: readonly ProjectChallenge[];
+  outcomes?: readonly ProjectOutcome[];
+  limitations?: readonly string[];
+  lessons?: readonly string[];
+  milestones?: readonly ProjectMilestone[];
 };
 
 export type Project = {
+  status: "draft" | "published";
   placeholder?: boolean;
   slug: string;
   title: string;
   summary: string;
   outcome: string;
   role: string;
-  year: string;
+  period: string;
+  periodNote?: string;
+  type?: "company" | "personal" | "open-source";
   tags: readonly string[];
+  stackNote?: string;
+  selected: boolean;
+  order: number;
   featured: boolean;
   links: { live?: string; github?: string };
-  image?: { src: string; alt: string; width: number; height: number };
+  image?: ProjectImage;
+  gallery?: readonly ProjectImage[];
   caseStudy?: ProjectCaseStudy;
 };
 

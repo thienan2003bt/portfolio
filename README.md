@@ -91,7 +91,7 @@ npm run lint
 
 ## Project status
 
-The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project and case-study content is explicitly labeled as design placeholders. Experience is implemented but hidden until employment details are supplied.
+The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project stage 1 adds a shared full catalog and explicit homepage selection. Webshare's draft separates confirmed role, period, and contribution topics from missing stack, technical details, and results; the two remaining design entries are labeled placeholders. Experience is implemented but hidden until employment details are supplied. Collection and detail routes remain coming-soon previews until stages 2 and 3.
 
 Content is maintained in typed modules under `content/`. See [PROJECTS-PLAN.md](./PROJECTS-PLAN.md) for the next implementation stages, proposed layouts, Webshare research, and content interview. The completed homepage plan has been retired; its outstanding launch checks are preserved below and in the new plan.
 

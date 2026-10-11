@@ -1,6 +1,6 @@
 # Projects implementation plan
 
-Status: planning complete; application implementation has not started. The homepage UI exists, while `/projects` and current project slugs still show coming-soon screens. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
+Status: stage 1 complete on `feat/project-pages`. The shared catalog and explicit homepage selection are implemented, including the Webshare draft. `/projects` and catalog project slugs still show coming-soon screens; collection and detail layouts are stages 2 and 3. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
 
 ## Goal and boundaries
 
@@ -101,13 +101,25 @@ Each stage is a separate implementation prompt and suggested commit. Update this
 | Stage | Status | Deliverable |
 | --- | --- | --- |
 | 0. Scope, research, and layouts | Complete | This plan, aligned scope docs, retired homepage plan. No application changes. |
-| 1. Shared project catalog | Pending | Typed full catalog, explicit homepage selections, Webshare draft. |
+| 1. Shared project catalog | Complete | Typed full catalog, explicit homepage selections, Webshare draft. |
 | 2. Collection and homepage link | Pending | `/projects` layout and working homepage entry point. |
 | 3. Detail layout | Pending | Reusable `/projects/[slug]` page with Webshare outline. |
 | 4. Approved Webshare story | Pending owner facts | Replace placeholders with personal contribution and evidence. |
 | 5. Validation and release readiness | Pending | Browser/production checks, content review, launch checklist. |
 
 ### 1. Shared project catalog
+
+Implemented October 11, 2026:
+
+- `content/types.ts` supports draft/published status, project period/type, explicit selection/order, captioned media, and optional structured case-study contributions, decisions, challenges, outcomes/evidence, milestones, limitations, and lessons.
+- `content/projects.ts` remains the full catalog. `selected` controls homepage membership; `featured` controls emphasis. Entries use `order` with slug tie-breaking, and homepage selections put featured entries first. `selectHomepageProjects` derives selections without mutating the catalog; `selectedProjects` feeds the homepage and its work navigation.
+- Webshare replaces `project-one` with the confirmed role, approximate period, whole-frontend responsibility, and four owner-reported contribution topics. Stack tags remain empty, with a visible confirmation prompt. Results, architecture, and detailed decisions remain labeled outlines; no external product/source link is present. The other two generic design entries remain clearly labeled placeholders.
+- The existing card distinguishes a real project's unfinished case study from a wholly illustrative design entry. The collapsed preview reads the shared outcome when no longer-form outcome is supplied and omits absent optional summaries/architecture. No new client boundary, routes, images, or dependencies were added.
+- Coming-soon reservations continue to derive from the full catalog: `/projects/webshare-space` replaces `/projects/project-one`. The retired draft URL returns 404; collection/detail implementation remains pending.
+
+Validation: `npm.cmd run lint` and `npm.cmd run build` passed, including Next.js TypeScript validation and static generation. On this Windows host, `npm.cmd` runs the existing scripts without changing PowerShell execution policy. Ad hoc catalog checks passed for unique slugs, explicit selection, an added unselected featured entry, deterministic order, empty selection, confirmed Webshare facts, absent external links, and reserved-path membership. Production HTTP checks passed for the homepage, collection/detail previews, and all remaining reserved pages; retired, unknown, and extra-segment paths returned 404. Server-rendered homepage markup retained three selections, draft labels, the collapsed case study, section anchors, and real contact links. Browser tools were unavailable, so visual, keyboard, zoom, and reduced-motion checks remain pending. No test framework was added and no deployment was performed.
+
+Original stage checklist:
 
 - Extend the existing types for the agreed summary/detail fields and draft handling. Keep current components compatible with the changed model.
 - Replace the first generic project with the Webshare draft, preserve remaining clearly labeled layout entries, and add explicit homepage selection/order. New unselected records must not appear on the homepage.

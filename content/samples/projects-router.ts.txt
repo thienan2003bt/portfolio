@@ -1,0 +1,46 @@
+import { Router, type ErrorRequestHandler } from "express";
+
+type Project = { id: string; title: string };
+type ProjectRepository = {
+  list(options: { limit: number; offset: number }): Promise<Project[]>;
+};
+
+function integer(raw: unknown, fallback: number, max: number): number | undefined {
+  if (raw === undefined) return fallback;
+  if (typeof raw !== "string" || !/^[1-9]\d{0,6}$/.test(raw)) return undefined;
+  const value = Number(raw);
+  return Number.isSafeInteger(value) && value <= max ? value : undefined;
+}
+
+// The repository is injected: routing does not own database access.
+export function createProjectsRouter(repository: ProjectRepository): Router {
+  const router = Router();
+
+  router.get("/", async (req, res, next) => {
+    const page = integer(req.query.page, 1, 100_000);
+    const limit = integer(req.query.limit, 20, 100);
+    if (page === undefined || limit === undefined) {
+      res.status(400).json({ error: "Invalid pagination parameters." });
+      return;
+    }
+    try {
+      const data = await repository.list({ limit, offset: (page - 1) * limit });
+      res.json({ data, pagination: { page, limit } });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  return router;
+}
+
+// Mount this after the router. Report unexpected failures without leaking details.
+export function createErrorHandler(
+  report: (error: unknown) => void,
+): ErrorRequestHandler {
+  return (error: unknown, _req, res, next) => {
+    if (res.headersSent) { next(error); return; }
+    report(error);
+    res.status(500).json({ error: "An unexpected error occurred." });
+  };
+}

@@ -1,0 +1,62 @@
+"use client";
+
+import { useEffect, useId, useState } from "react";
+
+type Project = { id: string; title: string; href: string };
+type SearchState =
+  | { status: "idle" | "loading" }
+  | { status: "success"; projects: Project[] }
+  | { status: "error"; message: string };
+
+function isProject(value: unknown): value is Project {
+  if (typeof value !== "object" || value === null) return false;
+  const project = value as Record<string, unknown>;
+  return typeof project.id === "string" && typeof project.title === "string"
+    && typeof project.href === "string" && project.href.startsWith("/projects/");
+}
+
+// This component expects a separate application's project search endpoint.
+export default function ProjectSearch() {
+  const inputId = useId();
+  const [query, setQuery] = useState("");
+  const [state, setState] = useState<SearchState>({ status: "idle" });
+
+  useEffect(() => {
+    const term = query.trim();
+    if (!term) return;
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      setState({ status: "loading" });
+      try {
+        const response = await fetch(`/api/projects?q=${encodeURIComponent(term)}`, {
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error("Search is unavailable. Please try again.");
+        const data: unknown = await response.json();
+        if (!Array.isArray(data) || !data.every(isProject)) throw new Error("Unexpected search response.");
+        if (!controller.signal.aborted) setState({ status: "success", projects: data });
+      } catch (error) {
+        if (!controller.signal.aborted) setState({ status: "error", message: error instanceof Error ? error.message : "Search failed." });
+      }
+    }, 250);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [query]);
+
+  return (
+    <section aria-label="Search projects">
+      <label htmlFor={inputId}>Project name</label>
+      <input id={inputId} type="search" value={query} onChange={(event) => {
+        setQuery(event.target.value);
+        setState({ status: "idle" });
+      }} aria-describedby={`${inputId}-status`} />
+      <div id={`${inputId}-status`} role="status" aria-live="polite">
+        {state.status === "loading" && "Searching…"}
+        {state.status === "error" && state.message}
+        {state.status === "success" && `${state.projects.length} projects found.`}
+      </div>
+      {state.status === "success" && <ul>{state.projects.map((project) => (
+        <li key={project.id}><a href={project.href}>{project.title}</a></li>
+      ))}</ul>}
+    </section>
+  );
+}

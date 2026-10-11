@@ -3,7 +3,7 @@
 ## Start here
 
 - Read [README.md](./README.md) for product scope and [ARCHITECTURE.md](./ARCHITECTURE.md) for mandatory technical conventions before changing code.
-- Inspect the affected files and [package.json](./package.json) before choosing an implementation. The app is already scaffolded; the README's project-status text describes an earlier stage. Use the repository for current implementation state and the docs for intended behavior.
+- Inspect the affected files and [package.json](./package.json) before choosing an implementation. Use the repository for current implementation state and the docs for intended behavior.
 - Keep changes focused on the request. Preserve unrelated work. If the request changes the product scope or stack, update the corresponding docs in the same change before implementing it.
 - Before writing code, read the relevant installed Next.js guides as required by the managed notice below. Use the installed version's APIs and heed deprecations.
 
@@ -11,13 +11,14 @@
 
 This is a hiring and freelance portfolio for a full-stack developer. Prioritize clear evidence of work, readable content, and easy contact.
 
-- v1 is one page at `/` with anchored sections. Only project case studies may add routes at `/projects/[slug]`.
-- Preserve section order: Header, Hero, Selected work, Case studies, Experience, Skills, About, Contact, Footer.
+- v1 is one page at `/` with anchored sections. Explicit reserved coming-soon paths are documented in [ARCHITECTURE.md](./ARCHITECTURE.md); unknown paths must remain 404s.
+- Preserve section order: Header, Hero, Selected work (with collapsed case studies inside projects), Experience, Skills, About, Contact, Footer.
 - Target three selected projects with one featured and one or two case studies, but omit empty sections instead of inventing content to meet a count.
 - Project cards show title, outcome, stack, role, year, and available live/GitHub/case-study links. Case studies explain context, contribution, stack, architecture, and outcome.
 - Contact is a visible email address with a `mailto:` link and GitHub. A resume PDF is optional. Do not add other social channels by default.
 - Do not add a blog, pricing, placeholder testimonials, contact forms, or unfinished-project dumps.
 - Never invent employers, dates, metrics, skills, project outcomes, or links. Ask for missing facts when necessary; do not publish placeholders as real content.
+- During the current UI-first phase, the owner explicitly permits clearly labeled project and case-study placeholders. Keep links absent until supplied and replace placeholders before public launch. Hero code examples are illustrative, not claims of shipped work.
 - Anonymize company case studies. Never commit secrets, private URLs, NDA-protected client names, or proprietary code.
 
 ## Implementation rules
@@ -71,6 +72,8 @@ Use the scripts actually defined in [package.json](./package.json):
 - For documentation-only changes, check consistency, links, and the diff; an application build is unnecessary.
 - Review the final diff for unrelated edits, fabricated content, secrets, and dependency churn.
 - Summarize what changed and the checks actually performed. State any failed or unavailable checks and remaining limitations clearly.
+- Whenever a prompt produces codebase changes (including documentation), include a suggested commit message in the final response: one sentence, no more than 30 words.
+- Keep each implementation prompt scoped to one task and one commit. Finish only the requested roadmap step; do not bundle later steps. Create a commit only when the user asks to commit.
 
 ## Managed Next.js guidance
 

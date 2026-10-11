@@ -52,6 +52,8 @@ v1:
 /projects/[slug]      → optional case study (only if the project needs it)
 ```
 
+UI-preview exception requested by the owner: `/about`, `/contact`, `/projects`, `/experience`, `/skills`, `/coming-soon`, and the current project slugs display a shared coming-soon screen. These are statically generated, explicit reserved paths; unlisted paths return 404. Future real pages can replace the reserved routes. Homepage case-study details are collapsed within each project card rather than rendered as a separate section.
+
 No other routes unless this file is updated (no `/blog`, `/services`, `/admin`).
 
 ### Intended folders
@@ -99,6 +101,8 @@ Author-facing facts live in `content/`, imported by the app. Suggested modules:
 
 
 Types live next to the data or in `content/types.ts`. Components must not invent parallel shapes.
+
+Hero source samples live in `content/samples/` as complete source files with a `.txt` suffix. They are display assets and do not run in this application or add backend dependencies. `content/code-examples.ts` reads them on the server; only source text and metadata reach the interactive viewer. Output tracing includes the sample files for deployment. Samples are authored examples until replaced with the owner's verified project source.
 
 Case-study **long form** may be MDX under `content/projects/` keyed by `slug`. Front matter must match `projects.ts` (or MDX is the single source for that slug — pick one and stay consistent).
 

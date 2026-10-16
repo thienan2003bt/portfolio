@@ -18,7 +18,7 @@ This repository is the source of truth for the public site. Visual design comes 
 | **Goal of this site** | Job applications and freelance opportunities |
 | **What you will find** | Selected work, company experience (case-study style where IP allows), skills grouped by area, a short about section, email + GitHub |
 
-The live site is a single-page portfolio with optional deep-dive case studies. Company work is described without leaking private code or client IP. Personal projects are current, public, and (when possible) demoed live.
+The homepage introduces selected work and links to the career-wide project collection at `/projects`. Dedicated case studies at `/projects/[slug]` now use a shared detail layout, with explicitly labeled draft content until approved. Implementation and remaining content work follow [PROJECTS-PLAN.md](./PROJECTS-PLAN.md). Company work is described without leaking private code or client IP.
 
 ---
 
@@ -29,7 +29,7 @@ Read this file and [`ARCHITECTURE.md`](./ARCHITECTURE.md) before changing the co
 ### Product constraints
 
 - Audience: recruiters, hiring managers, freelance clients.
-- v1 is **one long page** with anchored sections. Project routes and explicitly reserved coming-soon paths are documented in [ARCHITECTURE.md](./ARCHITECTURE.md).
+- The homepage remains **one long page** with anchored sections. The project collection and detail pages extend it without changing its section order. Route rollout and reserved coming-soon paths are documented in [ARCHITECTURE.md](./ARCHITECTURE.md).
 - Do **not** add: blog, services pricing, testimonials placeholders, contact forms, or a dump of old unfinished projects.
 - Contact surfaces: **email** (`mailto:` + visible address) and **GitHub**. No other social by default.
 
@@ -38,7 +38,7 @@ Read this file and [`ARCHITECTURE.md`](./ARCHITECTURE.md) before changing the co
 1. **Header** — name, role, GitHub, email, optional resume PDF.
 2. **Hero** — one-line pitch, short support copy, CTAs (email / view work).
 3. **Selected work** — three project cards (one featured). Each card: title, one-line outcome, stack tags, role, year, links (live / GitHub / case study).
-4. **Case studies** — collapsed inside their project cards; later `/projects/[slug]` if needed. Include context, contribution, stack, simple architecture, outcome, and available links. No secrets.
+4. **Case studies** — concise previews collapsed inside homepage project cards, with links to `/projects/[slug]` when implemented. Include context, contribution, stack, simple architecture, outcome, and available links. No secrets.
 5. **Experience** — company, title, dates, 3–5 impact bullets, stack used.
 6. **Skills** — Frontend / Backend / Practices. Interview-honest only.
 7. **About** — short bio and how I work.
@@ -48,6 +48,8 @@ Read this file and [`ARCHITECTURE.md`](./ARCHITECTURE.md) before changing the co
 ### Content vs UI
 
 Copy and structured data live in typed modules (and MDX later if a case study needs long-form). Do not hardcode recruiter-facing facts across random components. During UI development, clearly labeled project and case-study placeholders are permitted at the owner's request; replace them before public launch. Never invent working demo links or present sample outcomes as facts. Empty sections should not ship; omit them instead.
+
+The project collection covers completed work and meaningful ongoing work throughout the owner's career, including every homepage selection. Use one catalog with an explicit homepage selection; do not duplicate entries or invent projects to fill the archive. Webshare.space is the first case-study draft: the owner reports working as a Full-stack Developer since approximately April 15, 2025, with responsibility for its Vite/React/JavaScript frontend. Its backend uses Rust with Actix; the owner wrote the multipart-upload backend code and otherwise rarely touches the backend. The owner approved high-level encryption, multipart-upload, resumable-download, and loading-improvement summaries, plus a 62% initial gzipped JavaScript reduction as a build measurement and transfers tested up to 15 GB as sandbox results. Describe work as built or implemented; production deployment remains unconfirmed. Mention Webshare by name without an external product link, as requested. Screenshots, employer attribution, and further internal technical details still require an approved disclosure scope.
 
 ### Motion
 
@@ -89,9 +91,18 @@ npm run lint
 
 ## Project status
 
-The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project and case-study content is explicitly labeled as design placeholders. Experience is implemented but hidden until employment details are supplied.
+The homepage UI is implemented: header, technology code tabs, selected work, on-page case study, skills, about, contact, and footer. Project stages 1 through 3 add a shared catalog, explicit homepage selection, the `/projects` collection, and static `/projects/[slug]` detail pages. Cards link to the detail pages, which include breadcrumbs and return-to-collection actions. Webshare shows the owner's confirmed role, period, stack, four approved contribution summaries, and clearly scoped build/sandbox outcomes. The supplied `content/documents/webshare-space.md` remains its editorial source of truth and records the owner's approvals; the catalog presents only the necessary reviewed subset. Earlier illustrative reasoning is removed. Unconfirmed architecture, decisions, lessons, and production release claims are omitted. The two remaining design entries get shorter labeled pages. Experience is implemented but hidden until employment details are supplied. The collection and detail pages remain noindex while their content is unfinished.
 
-Content is maintained in typed modules under `content/`. See [HOMEPAGE-PLAN.md](./HOMEPAGE-PLAN.md) for the implementation status and release checklist.
+Stage 5's available production checks passed for the current draft: lint/build, known and unknown routes, navigation/anchor targets, contact links, semantic markup, draft metadata, and assets. Both social preview images were visually inspected. Browser review, approved content/media, and a real production origin remain pending; unknown-path requests returned 404 but also produced Next.js fallback-error logs to recheck in the deployment preview.
+
+Content is maintained in typed modules under `content/`. See [PROJECTS-PLAN.md](./PROJECTS-PLAN.md) for the verification record and remaining release work, proposed layouts, Webshare research, and content interview. The completed homepage plan has been retired; its outstanding launch checks are preserved below and in the new plan.
+
+### Outstanding launch checks
+
+- Replace project and case-study placeholders with approved content, images, and real links. Add experience entries only when supplied; city, availability, and resume remain optional.
+- Current draft lint/build and production page/asset checks passed. Repeat affected checks after application, content, image, or origin changes.
+- Check mobile and desktop layouts, 200% zoom, keyboard navigation, code tabs, anchors, contact links, and reduced motion in a browser. Previous completion work had no browser tools; these checks remain pending.
+- Configure the production origin: current canonical/social URLs still use a placeholder domain. Review a Vercel preview on an actual phone and recheck unknown-path server logs before public launch. No deployment or completed browser verification is recorded.
 
 ### Deployment
 

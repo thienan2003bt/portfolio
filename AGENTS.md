@@ -11,15 +11,15 @@
 
 This is a hiring and freelance portfolio for a full-stack developer. Prioritize clear evidence of work, readable content, and easy contact.
 
-- v1 is one page at `/` with anchored sections. Explicit reserved coming-soon paths are documented in [ARCHITECTURE.md](./ARCHITECTURE.md); unknown paths must remain 404s.
-- Preserve section order: Header, Hero, Selected work (with collapsed case studies inside projects), Experience, Skills, About, Contact, Footer.
-- Target three selected projects with one featured and one or two case studies, but omit empty sections instead of inventing content to meet a count.
+- The homepage at `/` has anchored sections. The approved project phase adds `/projects` and `/projects/[slug]` according to [PROJECTS-PLAN.md](./PROJECTS-PLAN.md). Current reserved coming-soon paths and route migration rules are documented in [ARCHITECTURE.md](./ARCHITECTURE.md); unknown paths must remain 404s.
+- Preserve homepage section order: Header, Hero, Selected work (with collapsed case-study previews inside projects), Experience, Skills, About, Contact, Footer.
+- Target three homepage selections with one featured and one or two case-study previews, but omit empty sections instead of inventing content to meet a count. The collection covers career-wide work and includes all homepage selections, using the same typed catalog.
 - Project cards show title, outcome, stack, role, year, and available live/GitHub/case-study links. Case studies explain context, contribution, stack, architecture, and outcome.
 - Contact is a visible email address with a `mailto:` link and GitHub. A resume PDF is optional. Do not add other social channels by default.
 - Do not add a blog, pricing, placeholder testimonials, contact forms, or unfinished-project dumps.
 - Never invent employers, dates, metrics, skills, project outcomes, or links. Ask for missing facts when necessary; do not publish placeholders as real content.
 - During the current UI-first phase, the owner explicitly permits clearly labeled project and case-study placeholders. Keep links absent until supplied and replace placeholders before public launch. Hero code examples are illustrative, not claims of shipped work.
-- Anonymize company case studies. Never commit secrets, private URLs, NDA-protected client names, or proprietary code.
+- Anonymize company case studies by default. The owner permits mentioning Webshare.space by name but requests no external product link; its URL is for research only. Publish employer attribution, screenshots, and internal details only within a confirmed disclosure scope. Never commit secrets, private URLs, NDA-protected client names, or proprietary code.
 
 ## Implementation rules
 

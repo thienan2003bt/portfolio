@@ -1,6 +1,6 @@
 # Projects implementation plan
 
-Status: stages 1 through 3 complete on `feat/project-pages`; stage 4 has confirmed scope/stack and suggested narratives for all four Webshare contributions. The owner requested illustrative reasoning labeled for later revision. Technical stories, results, media, and disclosure approval remain pending; stage 4 is still in progress and stage 5 has not started. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
+Status: stages 1 through 3 complete on `feat/project-pages`; stage 4 uses the supplied `content/documents/webshare-space.md` as its editorial source. The page now includes four owner-approved contribution summaries and the approved build/sandbox measurements, without production release claims. Prior illustrative reasoning has been removed. Stage 5's available production checks are recorded below; browser review and launch readiness remain pending. Further technical detail, media, and disclosure approval still need follow-up. This document replaces the completed homepage plan and preserves its outstanding release checks. Scope and stack are governed by [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [AGENTS.md](./AGENTS.md).
 
 ## Goal and boundaries
 
@@ -104,8 +104,8 @@ Each stage is a separate implementation prompt and suggested commit. Update this
 | 1. Shared project catalog | Complete | Typed full catalog, explicit homepage selections, Webshare draft. |
 | 2. Collection and homepage link | Complete | `/projects` layout and working homepage entry point. |
 | 3. Detail layout | Complete | Reusable `/projects/[slug]` page with Webshare outline. |
-| 4. Approved Webshare story | In progress: suggested narratives added | Confirmed scope/stack and labeled drafts; actual stories, evidence, and approval pending. |
-| 5. Validation and release readiness | Pending | Browser/production checks, content review, launch checklist. |
+| 4. Approved Webshare story | Approved concise copy implemented; further detail/media pending | Four confirmed summaries, scoped build/sandbox outcomes, no production release claims. |
+| 5. Validation and release readiness | Production checks recorded; browser review pending | Verified current draft routes/assets/content; remaining launch work listed below. |
 
 ### 1. Shared project catalog
 
@@ -182,6 +182,23 @@ Suggested implementation prompt: `Implement stage 3 of PROJECTS-PLAN.md only: bu
 
 ### 4. Approved Webshare story
 
+Owner-confirmed content implemented October 16, 2026:
+
+- The owner approved all four high-level summaries: browser-side encryption integration, multipart upload across the browser and Rust backend, interruption recovery with reload recovery on supported browsers, and reduced unnecessary initial JavaScript loading. The page uses those summaries and omits unconfirmed detailed reasoning, design authorship, architecture, and personal lessons.
+- The owner confirmed both measurements are accurate and may be shown: 62% smaller initial gzipped JavaScript as a build measurement, and transfers tested up to 15 GB as sandbox results. The shared card outcome and detail evidence retain these qualifications; no Core Web Vitals score, production file-size limit, or personal test-run attribution is inferred.
+- Wording remains built/implemented; production deployment is explicitly unconfirmed. The source brief records the exact approval scope and retains all other evidence labels and unresolved questions.
+- Homepage, collection, and detail continue using the same catalog. Screenshot frames stay labeled, no external product link is added, and draft/noindex remains while further content/media is under review.
+
+Validation: `npm.cmd run lint` and `npm.cmd run build` passed. Generated production HTML checks passed for the homepage, collection, and Webshare detail: shared approved copy and qualified outcomes, four contribution summaries, explicit unconfirmed production deployment, outcome/contents anchors, draft noindex, collapsed homepage preview, and absent internal or unapproved claims. Source approval records, American English spellings, preserved internal filenames, documentation links, and the diff were checked. Browser controls remain unavailable; no visual or keyboard pass is claimed. No dependency changes, commit, or deployment were made.
+
+Source review started October 16, 2026:
+
+- The owner supplied `content/documents/webshare-space.md` and requests that it remain the editorial source of truth. Preserve its evidence labels and distinctions between repository findings, inferences, sandbox testing, and unknown production release status. Its internal source index is not public page content.
+- Converted 26 British spelling/usage instances to American English, preserving document structure, inline identifiers, source filenames, and claim qualifications.
+- Removed the earlier illustrative problem/approach/reasoning/trade-off/verification copy from the catalog. Existing owner-confirmed responsibilities, stack, and contribution topics remain; the four new public summaries, use of measurements, and release wording are pending explicit owner answers. Do not infer confirmation from AI labels such as `[OWNER]` or `[REPO, yours]`.
+- The catalog is a curated presentation of the brief and prior owner confirmations. Do not import the whole source into the application or render its internal references. Keep draft/noindex and the naming-only product-link preference.
+- Lint passed. The first build failed to download existing Google Fonts under restricted networking; the network-enabled production build passed, including TypeScript and static generation. Generated homepage, collection, and Webshare HTML retained confirmed ownership, omitted earlier illustrative narratives and unconfirmed measurements/internal references, and preserved absent product links and draft noindex. Document spelling/structure checks passed; browser checks remain unavailable.
+
 Draft revision implemented October 11, 2026:
 
 - Added the owner's confirmed Vite/React/JavaScript frontend, Rust/Actix backend, small startup team, and personal ownership of multipart-upload backend code. The frontend language is JavaScript; do not substitute the portfolio's TypeScript stack.
@@ -206,6 +223,32 @@ Done when: Webshare reads as a credible account of the owner's work, with no pla
 Suggested implementation prompt: `Implement stage 4 of PROJECTS-PLAN.md only using my supplied Webshare answers and approved assets; leave unsupported sections out.`
 
 ### 5. Validation and release readiness
+
+Reviewed October 11, 2026, against the current draft catalog. No application changes or dependency updates were needed for the checks performed. No commit or deployment was created.
+
+| Check | Result and limits |
+| --- | --- |
+| Lint and production build | `npm.cmd run lint` passed. The first build could not fetch the existing Geist fonts with restricted network access; `npm.cmd run build` passed when rerun with network access, including TypeScript validation and 15 generated pages/assets. |
+| Known routes | Production HTTP 200 for `/`, `/projects`, all three catalog details, and all five remaining reserved previews: 10 pages in total. |
+| Unknown routes | HTTP 404 for `/unlisted-page`, `/projects/unknown-project`, the retired `/projects/project-one`, `/projects/webshare-space/extra`, and `/about/extra`. Next.js also logged `NoFallbackError` during these requests; no HTTP 500 response was observed. Recheck server logs in the eventual deployment preview. |
+| Navigation and contact | All rendered internal page links and same/cross-page anchor targets resolved. Homepage selections appear once each in the collection; collection/detail/return links are present. Visible email, its real `mailto:` target, and the supplied GitHub link are present on all 10 pages. No external Webshare URL or dummy `#` action appeared. |
+| Semantic markup | Each page has one H1, a logical heading sequence, unique IDs, and valid `aria-labelledby`/`aria-controls` references. Images have alt attributes. Homepage/collection/details have skip links and focusable main landmarks. These are markup checks, not screen-reader or keyboard interaction testing. |
+| Content and initial HTML | Shared contribution and confirmed stack agree across homepage/collection/detail. All four proposed narratives and their suggested verification labels are present in initial server-rendered HTML. Unsupported outcomes, architecture, decisions, challenges, and lessons are omitted. Homepage case-study disclosures remain closed initially. No browser test with JavaScript disabled was available. |
+| Metadata | All 10 titles are distinct and descriptions populated. Collection/detail canonical and social URL paths match their routes; draft and reserved pages remain noindex. Social tags use the existing site images; proposed narratives are absent from metadata descriptions. Rendered origins still use `https://your-portfolio-domain.com`, so the real production origin must be configured before launch. |
+| Assets | The stylesheet and two preloaded local font assets returned 200. `/icon.svg` returned its expected SVG type and 64×64 viewBox. Both social-image routes returned 1200×630 PNGs; the identical previews were visually inspected for readable, unclipped text. No real project screenshots are supplied yet, so their cropping/loading/alt quality remains untested. |
+| Theme and motion source | Solid foreground, muted, and accent tokens against the three base surfaces exceed 4.5:1 text contrast; the lowest tested pair is muted/surface-raised at 6.91:1. Action text and focus colors also passed their calculated checks. Visible-focus CSS, reduced-motion guards, and a readable initial reveal state are present. Computed browser colors, focus behavior, and motion remain unverified. |
+
+The production server used for review was stopped. Ad hoc HTTP/markup and contrast checks were run without adding a test framework or tracked test script. Browser controls were unavailable, so this stage records production verification without claiming a completed visual review or approval to launch.
+
+Remaining release work:
+
+- Replace the suggested Webshare narratives with actual actions, decisions, and results; confirm disclosure scope before adding internal detail or real screenshots. Replace or omit the two generic design entries. Keep draft/noindex handling until the relevant content is approved.
+- Configure the actual production origin through the existing documented environment settings and rebuild. Recheck absolute canonical/social URLs and unknown-path server logs in the deployment preview.
+- Review `/`, `/projects`, and `/projects/webshare-space` at 360px, 768px, and 1440px, plus 200% zoom. Check long titles, the email address, stack tags, story text, contents sidebar, and code blocks for page overflow.
+- Use only the keyboard to follow skip links, homepage → collection → detail → collection/home, contents anchors, and contact links. Check visible focus; verify hero code tabs with Left/Right, Home, and End and homepage disclosures with Enter/Space.
+- Enable reduced motion and verify readable static content; disable JavaScript and verify collection/details and native disclosures. Review actual screenshots when supplied, then check a deployment preview on a real phone.
+
+Original stage checklist:
 
 - Run `npm run lint` and `npm run build`; serve the production build when checking routes. There is no test script or requirement to add a test framework.
 - Verify `/`, `/projects`, each listed detail, and remaining reserved previews; unknown top-level, unknown-slug, and extra-segment URLs must return 404.
@@ -264,6 +307,6 @@ The frontend/backend technologies and qualitative team setup are now supplied. C
 - Replace homepage/collection/detail placeholders with approved real content and images; omit unsupplied entries instead of inventing facts. Optional experience entries, city, availability, and resume remain omitted until provided.
 - Preserve the Webshare naming-only preference: no external product link in cards, detail pages, metadata, or rendered content. Confirm remaining company disclosure and screenshot permissions; private source code, client identities under NDA, and private URLs never enter the repository.
 - Configure the production origin through `NEXT_PUBLIC_SITE_URL` for a custom domain, or retain Vercel's production URL fallback. Redeploy after an origin change.
-- Complete production lint/build and review pages, favicon, and both existing social preview images. The homepage's previous successful checks do not verify these new routes.
-- Complete browser checks including homepage code tabs and the new project-page navigation. The retired plan's browser checks were still pending.
+- Stage 5 records successful current production lint/build, route/markup checks, favicon responses, and visual inspection of both existing social preview images. Repeat affected checks after content, assets, origin, or application changes.
+- Complete browser checks including homepage code tabs and the new project-page navigation. These remain pending after stage 5's production review.
 - Review a Vercel preview on an actual phone before public launch. This planning change does not deploy the site or certify launch readiness.
